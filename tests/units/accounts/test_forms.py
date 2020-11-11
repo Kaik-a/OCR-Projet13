@@ -1,10 +1,9 @@
 """Test on account module's form"""
-from django.test import TestCase
-
 from accounts.forms import ChangePasswordForm, CheckMailForm, LoginForm, SubscribeForm
+from tests.test_pattern import TestPattern
 
 
-class TestForms(TestCase):
+class TestForms(TestPattern):
     """Test on accounts forms"""
 
     def test_login_form(self):
