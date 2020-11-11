@@ -1,11 +1,8 @@
 langage: python
-
 python:
 - '3.8'
-
 addons:
   firefox: latest
-
 before_script:
 - wget https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz
 - mkdir geckodriver
@@ -14,16 +11,14 @@ before_script:
 - sudo apt-get install xvfb
 - Xvfb :10 -ac &
 - pip install -r requirements.txt
-
 branches:
   only:
   - develop
 env:
   global:
-
   - DJANGO_SETTINGS_MODULE="settings.travis"
   - DISPLAY=:10
-
+  - secure: JFj3EG9yPG5mCK4soT+YVtvogJvdHb0lLtr3ZtynX4IikerzK4bnVoXii+LlNDo3dyOhhfpLyLyWvkMZ+fXVGRNeNCxaXF0G0iA2/FhYh+nHaagWEDEPn8S4P6iEfGUQHJcngMlpguUD/0K5BcGvvfn0LF4JNcyRDkW8NeSB5eSD2QBNCngzSNY/V6pNL5mJYmK8gwV+Wr98fmEqiD2+kwxQawMuwF/23/Srw4sIc2ns2F6syPqMRh4mIdwvQnKwPBWPQZDT55viAANO9pqF4U8p1EMOc5Rs0ZptvW1kn/Z1TKHu9iHtSiCSPDQcFRqFvL5WtmKBRa8+MV3PHULxgF4+w2ohKMpFAAjwWgxNxm3bhzvNXmk284Zp3XYhobAmpraHpavSgqgU9jJ3R9QVX1j4ZyaEfcAOFj/142PSLDvOUaNk1G74qOrWpOH0Eh66UK+IPGptKqJtilYMQ5oEjUOHU/oCITCckpkhCnjKmSke6d1azHfyyKchy131o4wkrJJtemkV7fo5wIcj5myJZOe5FTh4gFqirlEiZDIHx3p2/R1LE3QVhnkGmtCc8fkjtfW2eHvodVo6HT95G/Oo6B8aYYn8cA3NUi+G38A0e35aqbKM72JJwtSyuSVjftA2tszS4og42hWcJnR5+8jhqyJ4yg39AaWvtsdaT+h+Ybo=
 services:
 - postgresql
 script:
