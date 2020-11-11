@@ -1,0 +1,5 @@
+django
+gunicorn
+pre-commit
+requests
+selenium

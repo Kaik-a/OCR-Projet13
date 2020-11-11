@@ -1,0 +1,31 @@
+langage: python
+
+python:
+- '3.8'
+
+addons:
+  firefox: latest
+
+before_script:
+- wget https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz
+- mkdir geckodriver
+- tar -xzf geckodriver-v0.27.0-linux64.tar.gz -C geckodriver
+- export PATH=$PATH:$PWD/geckodriver
+- sudo apt-get install xvfb
+- Xvfb :10 -ac &
+- pip install -r requirements.txt
+
+branches:
+  only:
+  - develop
+env:
+  global:
+
+  - DJANGO_SETTINGS_MODULE="settings.travis"
+  - DISPLAY=:10
+
+services:
+- postgresql
+script:
+- "./manage.py collectstatic --no-input"
+- "./manage.py test tests"
