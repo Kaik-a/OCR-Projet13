@@ -1,3 +1,7 @@
+"""Accounts views"""
 from django.shortcuts import render
 
-# Create your views here.
+
+def login(request):
+    """load login"""
+    return render(request, "login.html")
