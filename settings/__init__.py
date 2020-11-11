@@ -79,9 +79,13 @@ WSGI_APPLICATION = "gamelenders.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "ocrprojet13",
+        "USER": "ocrprojet13user",
+        "PASSWORD": os.environ["P13_SQL_PASSWORD"],
+        "HOST": "localhost",
+        "PORT": "",
+    },
 }
 
 
