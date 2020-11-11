@@ -1,15 +1,13 @@
 """Send request to giantbomb API"""
-import requests
 from typing import List, Union
+
+import requests
 
 from scrapping import construct_requests
 
 
 def send_request(
-        *,
-        query: str,
-        data_format: str = "json",
-        resources: Union[List[str], str] = None
+    *, query: str, data_format: str = "json", resources: Union[List[str], str] = None
 ) -> List:
     """
     Send request to giantbomb API.
@@ -22,16 +20,14 @@ def send_request(
 
     # headers are needed to identify to giantbom API otherwise, API throw a 403 error
     headers = {
-        'User-Agent': 'gamelenders',
+        "User-Agent": "gamelenders",
     }
 
     request = requests.get(
         construct_requests.construct_request(
-            query=query,
-            data_format=data_format,
-            resources=resources
+            query=query, data_format=data_format, resources=resources
         ),
-        headers=headers
+        headers=headers,
     )
 
-    return request.json()['results']
+    return request.json()["results"]
