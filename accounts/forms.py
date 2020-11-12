@@ -16,7 +16,7 @@ class SubscribeForm(forms.Form):
     last_name = forms.CharField(label="Nom", max_length=120)
     first_name = forms.CharField(label="Prénom", max_length=50)
     email = forms.EmailField(label="E-mail")
-    password = forms.CharField(label="Password", widget=forms.PasswordInput)
+    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)
     confirm_password = forms.CharField(label="Confirmer", widget=forms.PasswordInput)
 
     def clean(self):
