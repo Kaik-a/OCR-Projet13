@@ -8,6 +8,7 @@ from accounts.models import AwaitingData
 
 class Command(BaseCommand):
     """Purge command"""
+
     help = "Delete awaiting data older than 24 hours"
 
     def handle(self, *args, **options):  # pylint: disable=W0613
