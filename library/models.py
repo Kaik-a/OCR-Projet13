@@ -59,6 +59,7 @@ class LenderedGame(models.Model):
 
     game: PossessedGame = models.ForeignKey(PossessedGame, on_delete=models.CASCADE)
     borrower: CustomUser = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    not_registered_borrower: str = models.CharField(max_length=100)
     lendered_date: datetime = models.DateTimeField(default=datetime.now)
     return_date: datetime = models.DateTimeField(null=True)
 
