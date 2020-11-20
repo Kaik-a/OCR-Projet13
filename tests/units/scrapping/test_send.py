@@ -21,7 +21,7 @@ class TestSendRequest(TestCase):
         except AttributeError:
             return
 
-    def get_headers(self, **kwargs) -> requests.Response:
+    def get_headers(self, *args, **kwargs) -> requests.Response:
         """Get headers from request"""
         modified_dict = requests.Response()
         mock = Mock(return_value={"results": kwargs.get("headers")})
