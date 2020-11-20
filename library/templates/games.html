@@ -31,7 +31,7 @@
                     <div class="col-md-4 text-center align-items-center justify-content-center d-flex">
                         <figure class="games">
                             <a class="games" href={% url "library:game" game.id %}>
-                                <img src="{{ game.image_url }}" class="product img-fluid">
+                                <img src="{{ game.image }}" class="product img-fluid">
                                 <figcaption>{{ game.name }}</figcaption>
                             </a>
                             {% with product as substitute %}
@@ -42,9 +42,6 @@
                                     </form>
                                 {% endblock save %}
                             {% endwith %}
-                            <span class="score">
-                                <p>{{ game.score }}</p>
-                            </span>
                         </figure>
                     </div>
                         </div>
@@ -55,7 +52,7 @@
                             <div class="col-md-4 text-center align-items-center justify-content-center d-flex">
                                 <figure class="games">
                                     <a class="games" href={% url "library:game" game.id %}>
-                                        <img src="{{ game.image_url }}" class="product img-fluid">
+                                        <img src="{{ game.image }}" class="product img-fluid">
                                         <figcaption>{{ game.name }}</figcaption>
                                     </a>
                                     {% with product as substitute %}
@@ -66,9 +63,6 @@
                                             </form>
                                         {% endblock save2 %}
                                     {% endwith %}
-                                    <span class="score">
-                                        <p>{{ game.score }}</p>
-                                    </span>
                                 </figure>
                             </div>
                     {% endif %}

@@ -25,8 +25,9 @@ class Game(models.Model):
     """Games"""
 
     name: str = models.CharField(max_length=100)
-    deck = models.CharField(max_length=5000)
+    deck: str = models.CharField(max_length=5000)
     image: str = models.CharField(max_length=1000)
+    giantbomb_url: str = models.CharField(max_length=500)
     platform: str = models.ForeignKey(Platform, on_delete=models.CASCADE)
     release_date: datetime = models.DateTimeField()
 

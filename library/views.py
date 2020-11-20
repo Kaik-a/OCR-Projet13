@@ -81,10 +81,9 @@ def results(request, platform: str, query: str) -> HttpResponse:
     :rtype: HttpResponse
     """
     try:
-        game_list = find_games(platform=platform, query=query)
+        game_list = find_games(query=query, query_platform=platform)
     except:
         return redirect(reverse("home"))
-
     return render(request, "results.html", {"games": game_list})
 
 
