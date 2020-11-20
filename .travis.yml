@@ -25,4 +25,5 @@ env:
 services:
 - postgresql
 script:
+- "./manage.py collectstatic --no-input"
 - "./manage.py test tests"
