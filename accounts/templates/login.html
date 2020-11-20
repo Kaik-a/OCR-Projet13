@@ -3,6 +3,7 @@
 {% block title %}Login{% endblock title %}
 
 {% block masthead %}
+     <form class="login-form text-white" action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     {{ form.media }}

@@ -112,6 +112,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# update following variables with your own informations
+EMAIL_SUBJECT_PREFIX = "[Contact]"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "gamelenders.mbi@gmail.com"
+EMAIL_HOST_PASSWORD = os.environ["EMAIL_PASSWORD_P13"]
+EMAIL_USE_TLS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

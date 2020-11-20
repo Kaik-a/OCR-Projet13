@@ -4,15 +4,13 @@
 
 {% block title %}Inscription{% endblock title%}
 
-{% block beforeheader %}
+{% block masthead %}
 <div class="row justify-content-center">
     <h1 class="text-white">Inscription</h1>
 </div>
 <div class="row justify-content-center">
     <h2 class="text-white text-center">Veuillez renseigner vos informations</h2>
 </div>
-{% endblock beforeheader %}
-{% block header %}
 <form class="subscribe-form text-white" action="" method="post">
    {% csrf_token %}
    {{ form.as_p}}
@@ -20,4 +18,4 @@
        <button id="subscribe_button" type="submit">S'inscrire</button>
    </div>
 </form>
-{% endblock header %}
+{% endblock masthead %}

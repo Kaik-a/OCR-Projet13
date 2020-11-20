@@ -24,15 +24,15 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <a class="navbar-brand js-scroll-trigger" href="{% url "home" %}">
                      <img src="{% static "assets/img/favicon.ico" %}" width="30" height="30" class="d-inline-block align-top" alt="">
                     GameLenders
                 </a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url 'accounts:authenticate' %}{% else %}{% url 'accounts:user_account'%}{% endif %}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Inscription">Inscription</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url 'accounts:login' %}{% else %}{% url 'accounts:user_account'%}{% endif %}">{% if not request.user_agent.is_pc %}{% if request.user.is_anonymous %} Login{% else %} Votre Compte{% endif %}{% endif %}</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "accounts:subscription" %}">Inscription</a></li>
                         {% block navbar %}{% endblock navbar %}
                     </ul>
                 </div>
