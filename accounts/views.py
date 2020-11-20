@@ -156,9 +156,10 @@ def reset_password(request, user: str) -> HttpResponse:
 
         if form.is_valid():
             user = CustomUser.objects.get(id=user)
-
             if user:
                 user.set_password(form.data.get("new_password"))
+
+                user.save()
 
                 messages.add_message(
                     request, 15, "Votre mot de passe à correctement été mis à jour"
