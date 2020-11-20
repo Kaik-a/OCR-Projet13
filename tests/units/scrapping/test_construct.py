@@ -31,7 +31,7 @@ class TestConstruct(TestCase):
 
     def test_construct_request(self):
         """Make sure requests are constructed correctly"""
-        base = "http://www.giantbomb.com/api/search/?api_key=" + API_KEY
+        base = "http://www.giantbomb.com/api/search/" + API_KEY
 
         # verify constrct request only accept keyword arguments
         with self.assertRaises(TypeError):
