@@ -33,8 +33,10 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url 'accounts:login' %}{% else %}{% url 'accounts:user_account'%}{% endif %}">{% if not request.user_agent.is_pc %}{% if request.user.is_anonymous %} Login{% else %} Votre Compte{% endif %}{% endif %}</a></li>
+                        {% if not request.user.is_anonymous %}
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "library:your-games" user.id %}">Vos Jeux</a></li>
+                        {% endif %}
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url "accounts:subscription" %}">Inscription{% else %}{% url "accounts:logout" %}">Déconnexion{% endif %}</a></li>
-                        {% block navbar %}{% endblock navbar %}
                     </ul>
                 </div>
             </div>

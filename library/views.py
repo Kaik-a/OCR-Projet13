@@ -6,7 +6,8 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 
 from accounts.models import CustomUser
-from library.models import Game, LenderedGame, WantedGame
+from library.forms import SearchGameForm
+from library.models import Game, LenderedGame, PossessedGame, WantedGame
 from scrapping.send_requests import send_request
 
 
@@ -70,16 +71,17 @@ def lends(request, user: str) -> HttpResponse:
     return render(request, "lendered.html", {"lendered_games": lendered_games})
 
 
-def results(request, query: str) -> HttpResponse:
+def results(request, query: str, resource: str) -> HttpResponse:
     """
     Display results for a given query.
 
     :param request: Django's request
     :param query: query to look for
+    :param resource: resource to look for
     :rtype: HttpResponse
     """
     try:
-        game_list = send_request(query=query, resources="game")
+        game_list = send_request(query=query, resources=resource)
     except:
         return redirect(reverse("home"))
 
@@ -104,3 +106,36 @@ def wanted(request, user: str) -> HttpResponse:
         return redirect(reverse("home"))
 
     return render(request, "wanted.html", {"wanted_games": wanted_games})
+
+
+def your_games(request, user: str) -> HttpResponse:
+    """
+    Display user's games.
+
+    :param request: Django's request
+    :param user: gamelender user
+    :rtype: HttpResponse
+    """
+    user_: CustomUser = CustomUser.objects.get(id=user)
+
+    games: Union[List[PossessedGame], PossessedGame] = PossessedGame.objects.filter(
+        user=user_
+    )
+    if request.method == "POST":
+        form: SearchGameForm = SearchGameForm(request.POST)
+
+        if form.is_valid():
+
+            return redirect(
+                reverse(
+                    "library:results",
+                    kwargs={
+                        "query": form.data.get("game"),
+                        "resource": form.data.get("platform"),
+                    },
+                )
+            )
+    else:
+        form: SearchGameForm = SearchGameForm()
+
+    return render(request, "games.html", {"form": form, "games": games})

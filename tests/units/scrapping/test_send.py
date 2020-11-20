@@ -34,7 +34,6 @@ class TestSendRequest(TestCase):
         patch_request = patch("requests.get", self.get_headers)
 
         patch_request.start()
-
         headers = send_requests.send_request(query="final fantasy", resources="game")
 
         self.assertEqual(

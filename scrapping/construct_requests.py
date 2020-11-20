@@ -1,7 +1,7 @@
 """Construct request for giantbomb API"""
 from typing import List, Union
 
-from scrapping import SEARCH_PATTERN
+from scrapping import API_KEY, BASE_URL, SEARCH_PATTERN
 
 
 def construct_request(
@@ -56,3 +56,11 @@ def add_resources(resources: Union[List[str], str]) -> str:
         return base + resources.lower()
 
     return base + ",".join([resource.lower() for resource in resources])
+
+
+def construct_platform_request() -> str:
+    """Construct platform request to populate the DB"""
+    request = BASE_URL + "platforms/" + API_KEY
+    request += add_data_format("json")
+
+    return request

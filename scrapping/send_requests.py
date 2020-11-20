@@ -31,3 +31,17 @@ def send_request(
     )
 
     return request.json()["results"]
+
+
+def get_platforms():
+    """Get platforms from GiantBomb"""
+    headers = {"User-Agent": "gamelenders"}
+
+    url: str = construct_requests.construct_platform_request()
+
+    request = requests.get(
+        url,
+        headers=headers,
+    )
+
+    return request.json()["results"]
