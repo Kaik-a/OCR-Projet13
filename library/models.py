@@ -13,6 +13,9 @@ class Platform(models.Model):
     constructor: str = models.CharField(max_length=100)
     release_date: datetime = models.DateTimeField()
 
+    def __str__(self):
+        return f"{self.name}"
+
     def __repr__(self):
         """Platform's representation"""
         return f"{self.name} by {self.constructor}"
@@ -22,9 +25,10 @@ class Game(models.Model):
     """Games"""
 
     name: str = models.CharField(max_length=100)
+    deck = models.CharField(max_length=5000)
+    image: str = models.CharField(max_length=1000)
     platform: str = models.ForeignKey(Platform, on_delete=models.CASCADE)
     release_date: datetime = models.DateTimeField()
-    score: int = models.IntegerField()
 
     def __repr__(self):
         """Game's representation"""

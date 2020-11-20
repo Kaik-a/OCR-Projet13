@@ -6,9 +6,9 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 
 from accounts.models import CustomUser
+from library.commands.commands import find_games
 from library.forms import SearchGameForm
 from library.models import Game, LenderedGame, PossessedGame, WantedGame
-from scrapping.send_requests import send_request
 
 
 def borrowed(request, user: str) -> HttpResponse:
@@ -71,21 +71,21 @@ def lends(request, user: str) -> HttpResponse:
     return render(request, "lendered.html", {"lendered_games": lendered_games})
 
 
-def results(request, query: str, resource: str) -> HttpResponse:
+def results(request, platform: str, query: str) -> HttpResponse:
     """
     Display results for a given query.
 
     :param request: Django's request
+    :param platform: game's platform
     :param query: query to look for
-    :param resource: resource to look for
     :rtype: HttpResponse
     """
     try:
-        game_list = send_request(query=query, resources=resource)
+        game_list = find_games(platform=platform, query=query)
     except:
         return redirect(reverse("home"))
 
-    return render(request, "library:results", {"games": game_list})
+    return render(request, "results.html", {"games": game_list})
 
 
 def wanted(request, user: str) -> HttpResponse:
@@ -125,13 +125,12 @@ def your_games(request, user: str) -> HttpResponse:
         form: SearchGameForm = SearchGameForm(request.POST)
 
         if form.is_valid():
-
             return redirect(
                 reverse(
                     "library:results",
                     kwargs={
+                        "platform": form.data.get("platform"),
                         "query": form.data.get("game"),
-                        "resource": form.data.get("platform"),
                     },
                 )
             )

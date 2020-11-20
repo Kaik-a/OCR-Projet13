@@ -9,5 +9,8 @@ class SearchGameForm(forms.Form):
 
     game = forms.CharField(label="Nom du jeu")
     platform = forms.ModelChoiceField(
-        label="Plateforme", queryset=Platform.objects.all()
+        label="Plateforme",
+        empty_label="",
+        queryset=Platform.objects.order_by("name"),
+        to_field_name="name",
     )
