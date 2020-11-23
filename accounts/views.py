@@ -138,7 +138,7 @@ def send_reset(request, user: str) -> HttpResponse:  # pylint: disable=W0613
     :param str user: user to change password
     :return:
     """
-    mail_password(user)
+    mail_password(request, user)
 
     return redirect(reverse("home"))
 

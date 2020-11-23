@@ -26,7 +26,7 @@ class TestMail(TestPattern):
 
     def test_reset_password(self):
         """Test mail sent when resetting password"""
-        mail_password(self.user.id)
+        mail_password(self.factory, self.user.id)
 
         assert len(mail.outbox) == 1
 

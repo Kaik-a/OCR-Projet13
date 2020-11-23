@@ -33,7 +33,8 @@ def borrowed(request, user: str) -> HttpResponse:
     return render(request, "borrowed.html", context)
 
 
-def game(request, game_id: int) -> HttpResponse:
+# TODO: type hint
+def game(request, game_id) -> HttpResponse:
     """
     Load game's page.
 
@@ -80,10 +81,9 @@ def results(request, platform: str, query: str) -> HttpResponse:
     :param query: query to look for
     :rtype: HttpResponse
     """
-    try:
-        game_list = find_games(query=query, query_platform=platform)
-    except:
-        return redirect(reverse("home"))
+
+    game_list = find_games(query=query, query_platform=platform)
+
     return render(request, "results.html", {"games": game_list})
 
 
