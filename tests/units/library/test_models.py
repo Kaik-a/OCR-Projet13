@@ -46,13 +46,13 @@ class TestViews(TestPattern):
                 release_date=datetime(19, 11, 2020),
             )
 
-    def test_LenderedGame(self):
+    def test_lendedGame(self):
         """test on platfotm's model"""
         with self.assertRaises(ValueError):
-            models.LenderedGame(
+            models.LendedGame(
                 game=self.game,
                 borrower=self.user,
                 not_registered_borrower=None,
-                lendered_date=datetime.now(),
+                lended_date=datetime.now(),
                 return_date=None,
             )

@@ -41,8 +41,8 @@ class Game(models.Model):
         return f"{self.name} on {self.platform}"
 
 
-class PossessedGame(models.Model):
-    """Games possessed by user"""
+class OwnedGame(models.Model):
+    """Games owned by user"""
 
     id: uuid4 = models.UUIDField(default=uuid4, primary_key=True)
     user: CustomUser = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -55,7 +55,7 @@ class PossessedGame(models.Model):
         unique_together = ("user", "game")
 
     def __repr__(self):
-        """Possessed's game representation"""
+        """owned's game representation"""
         return f"{self.game.name} owned by {self.user.username}"
 
 
@@ -76,16 +76,18 @@ class WantedGame(models.Model):
         return f"{self.game.name} wanted by {self.user.username}"
 
 
-class LenderedGame(models.Model):
-    """Lendered games"""
+class LendedGame(models.Model):
+    """lended games"""
 
     id: uuid4 = models.UUIDField(default=uuid4, primary_key=True)
-    game: PossessedGame = models.ForeignKey(PossessedGame, on_delete=models.CASCADE)
-    borrower: CustomUser = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    not_registered_borrower: str = models.CharField(max_length=100)
-    lendered_date: datetime = models.DateTimeField(default=datetime.now)
+    game: OwnedGame = models.ForeignKey(OwnedGame, on_delete=models.CASCADE)
+    borrower: CustomUser = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, null=True
+    )
+    not_registered_borrower: str = models.CharField(max_length=100, null=True)
+    lended_date: datetime = models.DateTimeField(default=datetime.now)
     return_date: datetime = models.DateTimeField(null=True)
 
     def __repr__(self):
-        """Lendered game's representation"""
+        """lended game's representation"""
         return f"{self.game} borrowed by {self.borrower.username}"

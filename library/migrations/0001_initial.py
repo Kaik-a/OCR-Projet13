@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name="PossessedGame",
+            name="ownedGame",
             fields=[
                 (
                     "id",
@@ -76,7 +76,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name="LenderedGame",
+            name="lendedGame",
             fields=[
                 (
                     "id",
@@ -85,7 +85,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("not_registered_borrower", models.CharField(max_length=100)),
-                ("lendered_date", models.DateTimeField(default=datetime.datetime.now)),
+                ("lended_date", models.DateTimeField(default=datetime.datetime.now)),
                 ("return_date", models.DateTimeField(null=True)),
                 (
                     "borrower",
@@ -98,7 +98,7 @@ class Migration(migrations.Migration):
                     "game",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        to="library.possessedgame",
+                        to="library.ownedgame",
                     ),
                 ),
             ],

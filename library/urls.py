@@ -12,4 +12,12 @@ urlpatterns = [
     path("results/<platform>/<query>", views.results, name="results"),
     path("wanted/<user>", views.wanted, name="wanted"),
     path("your-games/<user>", views.your_games, name="your-games"),
+    path("add-wish/<game>", views.add_wish, name="add-wish"),
+    path("delete-wish/<wanted-game>", views.delete_wish, name="delete-wish"),
+    path("add-library/<game>", views.add_to_library, name="add-library"),
+    path(
+        "delete-library/<owned-game>", views.delete_from_library, name="delete-library"
+    ),
+    path("mark-lended/<owned-game>", views.mark_lended, name="mark-lended"),
+    path("unmark-lended/<lended-game>", views.unmark_lended, name="unmark-lended"),
 ]
