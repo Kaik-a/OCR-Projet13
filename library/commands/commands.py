@@ -44,12 +44,12 @@ def find_games(query: str, query_platform: str) -> List[Game]:
         name = game.get("name")
         giantbomb_url = game.get("site_detail_url")
 
-        if release_date := game.get("original_release_date"):
-            release_date = str(release_date)
-        elif release_date := game.get("release_date"):
-            release_date = str(release_date)
-        elif release_date := game.get("expected_release_year"):
-            release_date = str(release_date) + "-01-01"
+        if game.get("original_release_date"):
+            release_date = str(game.get("original_release_date"))
+        elif game.get("release_date"):
+            release_date = str(game.get("original_release_date"))
+        elif game.get("expected_release_year"):
+            release_date = str(game.get("original_release_date")) + "-01-01"
         else:
             release_date = "1970-01-01"
 
