@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Jeux prêtés{% endblock title %}
+
+{% block masthead %}
+    <div class="col-lg-10 align-self-end">
+        <h1 class="text-uppercase text-white text-center font-weight-bold">{% block pagetitle %}Jeux Prêtés{% endblock pagetitle %}</h1>
+        <hr class="divider my-4" />
+    </div>
+    <form id="search_form" class="search-form text-white" action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ form.media }}
+        <button>Valider</button>
+    </form>
+    {% for game in games %}
+        <li>{{ game.game.game.name}}</li>
+    {% endfor %}
+{% endblock masthead %}

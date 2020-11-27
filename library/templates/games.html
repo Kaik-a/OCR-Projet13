@@ -34,14 +34,16 @@
                                 <img src="{{ game.image }}" class="product img-fluid">
                                 <figcaption>{{ game.name }}</figcaption>
                             </a>
-                            {% with product as substitute %}
-                                {% block save %}
-                                    <form class="delete-form" action="{% url "library:delete_game" game.id %}" method="post">
-                                        {% csrf_token %}
-                                        <button class="delete-button" type="submit"><i class="fas fa-trash-alt"></i> Supprimer</button>
-                                    </form>
-                                {% endblock save %}
-                            {% endwith %}
+                            {% block save %}
+                                <form class="delete-form" action="{% url "library:lend" game.id%}" method="post">
+                                    {% csrf_token %}
+                                    <button class="delete-button" type="submit">Prêter</button>
+                                </form>
+                                <form class="delete-form" action="{% url "library:delete-from-library" game.id%}" method="post">
+                                    {% csrf_token %}
+                                    <button class="delete-button" type="submit"><i class="fas fa-trash-alt"></i> Supprimer</button>
+                                </form>
+                            {% endblock save %}
                         </figure>
                     </div>
                         </div>
@@ -55,14 +57,16 @@
                                         <img src="{{ game.image }}" class="product img-fluid">
                                         <figcaption>{{ game.name }}</figcaption>
                                     </a>
-                                    {% with product as substitute %}
-                                        {% block save2 %}
-                                            <form class="delete-form" action="{% url "library:delete_game" game.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button class="delete-button" type="submit"><i class="fas fa-trash-alt"></i> Supprimer</button>
-                                            </form>
-                                        {% endblock save2 %}
-                                    {% endwith %}
+                                    {% block save2 %}
+                                        <form class="delete-form" action="{% url "library:lend" game.id%}" method="post">
+                                            {% csrf_token %}
+                                            <button class="delete-button" type="submit">Prêter</button>
+                                        </form>
+                                        <form class="delete-form" action="{% url "library:delete-from-library" game.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button class="delete-button" type="submit"><i class="fas fa-trash-alt"></i> Supprimer</button>
+                                        </form>
+                                    {% endblock save2 %}
                                 </figure>
                             </div>
                     {% endif %}

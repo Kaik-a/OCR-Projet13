@@ -51,3 +51,9 @@ class ChangePasswordForm(forms.Form):
 
         if new_password != confirm_new_password:
             raise forms.ValidationError("Les deux mots de passe ne correspondent pas")
+
+
+class SearchFriendForm(forms.Form):
+    """Class to create form in order to look for a friend"""
+
+    user = forms.CharField(label="Nom d'utilisateur", max_length=100)

@@ -1,15 +1,24 @@
 """Views for accounts"""
+from typing import List, Union
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
 from .commands.commands import mail_password, mail_subscription, validate_subscription
-from .forms import ChangePasswordForm, CheckMailForm, LoginForm, SubscribeForm
-from .models import AwaitingData, CustomUser
+from .forms import (
+    ChangePasswordForm,
+    CheckMailForm,
+    LoginForm,
+    SearchFriendForm,
+    SubscribeForm,
+)
+from .models import AwaitingData, CustomUser, Friends
 
 
 def login_user(request, form: LoginForm) -> HttpResponse:
@@ -162,7 +171,7 @@ def reset_password(request, user: str) -> HttpResponse:
                 user.save()
 
                 messages.add_message(
-                    request, 15, "Votre mot de passe à correctement été mis à jour"
+                    request, 25, "Votre mot de passe à correctement été mis à jour"
                 )
                 return redirect(reverse("accounts:login"), user=user)
     else:
@@ -189,7 +198,7 @@ def check_mail(request) -> HttpResponse:
                 if user:
                     messages.add_message(
                         request,
-                        15,
+                        25,
                         f"Un mail vous a été envoyé à l'adresse {email} "
                         f"pour changer votre mot de passe",
                     )
@@ -236,3 +245,64 @@ def user_account(request) -> HttpResponse:
     :return: HttpResponse
     """
     return render(request, "user_account.html")
+
+
+def friends(request) -> HttpResponse:
+    """
+    See user's friends.
+
+    :param request: django's request
+    :rtype: HttpResponse
+    """
+    friends_: Union[List[Friends], Friends] = Friends.objects.filter(user=request.user)
+
+    if request.method == "POST":
+        form: SearchFriendForm = SearchFriendForm(request.POST)
+
+        username = form.data.get("user")
+        if form.is_valid():
+            try:
+                friend_to_add: CustomUser = CustomUser.objects.get(username=username)
+
+                relationship = Friends(user=request.user, friend=friend_to_add)
+
+                relationship.save()
+
+                messages.add_message(
+                    request, 25, f"L'utilisateur {username} a été ajouté à vos amis"
+                )
+            except ObjectDoesNotExist:
+                messages.add_message(
+                    request,
+                    40,
+                    f"Aucun utilisateur trouvé ayant pour nom d'utilisateur {username}",
+                )
+            except IntegrityError:
+                messages.add_message(request, 40, f"Vous êtes déjà ami avec {username}")
+            return redirect(reverse("accounts:friends"))
+    else:
+        form: SearchFriendForm = SearchFriendForm()
+
+    return render(request, "friends.html", context={"form": form, "friends": friends_})
+
+
+def delete_friend(request, friend: CustomUser) -> HttpResponse:
+    """
+    Delete a friend from friend's list
+
+    :param request: django's request
+    :param friend: friend to delete
+    :rtype: HttpResponse
+    """
+    try:
+        Friends.objects.get(
+            user=request.user.id, friend=CustomUser.objects.get(username=friend)
+        ).delete()
+
+        messages.add_message(
+            request, 25, f"L'utilisateur {friend} a bien été supprimé de vos amis"
+        )
+    except IntegrityError:
+        pass
+
+    return redirect(reverse("accounts:friends"))

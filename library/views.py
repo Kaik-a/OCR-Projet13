@@ -1,4 +1,5 @@
 """Views for library"""
+from datetime import datetime
 from typing import List, Union
 
 from django.contrib import messages
@@ -8,8 +9,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from accounts.models import CustomUser
-from library.forms import SearchGameForm
+from accounts.models import CustomUser, Friends
+from library.forms import LendGameForm, SearchGameForm
 from library.models import Game, LendedGame, OwnedGame, WantedGame
 
 from .commands.commands import find_games
@@ -27,7 +28,7 @@ def borrowed(request) -> HttpResponse:
             borrower=request.user
         )
     except ObjectDoesNotExist:
-        messages.add_message(request, 15, "Vous n'avez pas encore emprunté de jeu")
+        messages.add_message(request, 25, "Vous n'avez pas encore emprunté de jeu")
         return render(request, "borrowed.html")
 
     context = {"borrowed_games": borrowed_games}
@@ -51,7 +52,7 @@ def game(request, game_id: str) -> HttpResponse:
     return render(request, "game.html", {"game": game_})
 
 
-def lends(request, user: str) -> HttpResponse:
+def lended(request, user: str) -> HttpResponse:
     """
     Display lended games for a given user.
 
@@ -61,15 +62,49 @@ def lends(request, user: str) -> HttpResponse:
     """
     lender: CustomUser = CustomUser.objects.get(id=user)
 
+    if request.method == "POST":
+        form: LendGameForm = LendGameForm(request.POST, user=request.user)
+
+        if form.is_valid():
+            owned_game = OwnedGame.objects.get(id=form.data.get("game"))
+            borrower = Friends.objects.get(id=form.data.get("borrower")).friend
+            unknown_borrower = form.data.get("unknown_borrower")
+
+            try:
+                lended_game = LendedGame(
+                    game=owned_game,
+                    borrower=borrower,
+                    not_registered_borrower=unknown_borrower,
+                    lended_date=datetime.now(),
+                    return_date=None,
+                )
+                lended_game.save()
+
+                messages.add_message(
+                    request,
+                    25,
+                    f"Le jeu {owned_game.game.name} a été enregistré comme prêté "
+                    f"à {borrower.username or unknown_borrower}",
+                )
+            except IntegrityError:
+                messages.add_message(
+                    request,
+                    40,
+                    "Le jeu que vous souhaitez ajouter a déjà été emprunté",
+                )
+
+    else:
+        form: LendGameForm = LendGameForm(user=request.user)
+
     try:
         lended_games: Union[List[LendedGame], LendedGame] = LendedGame.objects.filter(
-            lender=lender
+            game__user=lender
         )
     except ObjectDoesNotExist:
-        messages.add_message(request, 15, "Vous n'avez prêté aucun jeu")
+        messages.add_message(request, 25, "Vous n'avez prêté aucun jeu")
         return render(request, "lended.html")
 
-    return render(request, "lended.html", {"lended_games": lended_games})
+    return render(request, "lended.html", {"form": form, "games": lended_games})
 
 
 def results(request, platform: str, query: str) -> HttpResponse:
@@ -102,11 +137,13 @@ def wanted(request, user: str) -> HttpResponse:
         )
     except ObjectDoesNotExist:
         messages.add_message(
-            request, 15, "Vous n'avez aucun jeu dans votre liste d'envies"
+            request, 25, "Vous n'avez aucun jeu dans votre liste d'envies"
         )
         return redirect(reverse("home"))
 
-    return render(request, "wanted.html", {"wanted_games": wanted_games})
+    games = [wanted_game.game for wanted_game in wanted_games]
+
+    return render(request, "wanted.html", {"games": games})
 
 
 def your_games(request, user: str) -> HttpResponse:
@@ -136,10 +173,12 @@ def your_games(request, user: str) -> HttpResponse:
     else:
         form: SearchGameForm = SearchGameForm()
 
+    games: Union[List[Game], Game] = [owned_game.game for owned_game in games]
+
     return render(request, "games.html", {"form": form, "games": games})
 
 
-def add_wish(request, game_: Game) -> HttpResponseRedirect:
+def add_wish(request, game_: str) -> HttpResponseRedirect:
     """
     Add a game to user's wish list.
 
@@ -147,13 +186,14 @@ def add_wish(request, game_: Game) -> HttpResponseRedirect:
     :param game_: game to add to wish list
     :rtype: HttpResponseRedirect
     """
+    game_: Game = Game.objects.get(id=game_)
     wanted_game: WantedGame = WantedGame(user=request.user, game=game_)
     try:
         wanted_game.save()
 
         messages.add_message(
             request,
-            15,
+            25,
             f"Le jeu {game_.name} a été correctement ajouté à votre liste d'envies",
         )
     except IntegrityError as error:
@@ -164,7 +204,7 @@ def add_wish(request, game_: Game) -> HttpResponseRedirect:
             f" à votre liste d'envies: {error}",
         )
 
-    return HttpResponseRedirect(request.path_info)
+    return HttpResponseRedirect(request.environ["HTTP_REFERER"])
 
 
 def delete_wish(request, wanted_game: WantedGame) -> HttpResponseRedirect:
@@ -175,12 +215,16 @@ def delete_wish(request, wanted_game: WantedGame) -> HttpResponseRedirect:
     :param wanted_game: game to delete from wish list
     :rtype: HttpResponseRedirect
     """
+    wanted_game: WantedGame = WantedGame.objects.get(
+        user=request.user, game=Game.objects.get(id=wanted_game)
+    )
+
     try:
         wanted_game.delete()
 
         messages.add_message(
             request,
-            15,
+            25,
             f"Le jeu {wanted_game.game.name} a été correctement supprimé de votre "
             f"liste d'envies",
         )
@@ -192,10 +236,10 @@ def delete_wish(request, wanted_game: WantedGame) -> HttpResponseRedirect:
             f"{wanted_game.game.name}: {error}",
         )
 
-    return HttpResponseRedirect(request.path_info)
+    return HttpResponseRedirect(request.environ["HTTP_REFERER"])
 
 
-def add_to_library(request, game_: Game) -> HttpResponseRedirect:
+def add_to_library(request, game_: str) -> HttpResponseRedirect:
     """
     Add a game to user's library.
 
@@ -203,6 +247,7 @@ def add_to_library(request, game_: Game) -> HttpResponseRedirect:
     :param game_: game to add to library
     :rtype: HttpResponseRedirect
     """
+    game_: Game = Game.objects.get(id=game_)
     new_game: OwnedGame = OwnedGame(user=request.user, game=game_)
 
     try:
@@ -210,17 +255,17 @@ def add_to_library(request, game_: Game) -> HttpResponseRedirect:
 
         messages.add_message(
             request,
-            15,
+            25,
             f"Le jeu {game_.name} a été correctement ajouté à votre bibliothèque",
         )
-    except IntegrityError as error:
+    except IntegrityError:
         messages.add_message(
             request,
             40,
-            f"Une erreur a été rencontrée lors de l'ajout de {game_.name} à votre "
-            f"bibliothèque: {error}",
+            f"Le jeu {game_.name} fait déjà partie de votre bibliothèque",
         )
-    return HttpResponseRedirect(request.path_info)
+
+    return HttpResponseRedirect(request.environ["HTTP_REFERER"])
 
 
 def delete_from_library(request, owned_game: OwnedGame) -> HttpResponseRedirect:
@@ -232,11 +277,15 @@ def delete_from_library(request, owned_game: OwnedGame) -> HttpResponseRedirect:
     :rtype: HttpResponseRedirect
     """
     try:
+        owned_game: OwnedGame = OwnedGame.objects.get(
+            user=request.user, game__id=owned_game
+        )
+
         owned_game.delete()
 
         messages.add_message(
             request,
-            15,
+            25,
             f"Le jeu {owned_game.game.name} a été correctement supprimé de votre "
             f"bibliothèque",
         )
@@ -248,7 +297,7 @@ def delete_from_library(request, owned_game: OwnedGame) -> HttpResponseRedirect:
             f"{owned_game.game.name}: {error}",
         )
 
-    return HttpResponseRedirect(request.path_info)
+    return HttpResponseRedirect(request.environ["HTTP_REFERER"])
 
 
 def mark_lended(request, borrower: CustomUser, game_: Game) -> HttpResponseRedirect:
@@ -268,7 +317,7 @@ def mark_lended(request, borrower: CustomUser, game_: Game) -> HttpResponseRedir
 
         messages.add_message(
             request,
-            15,
+            25,
             f"Le jeu {lended_game.game.name} a été correctement ajouté à vos jeux "
             f"empruntés",
         )
@@ -280,7 +329,7 @@ def mark_lended(request, borrower: CustomUser, game_: Game) -> HttpResponseRedir
             f"empruntés: {error}",
         )
 
-    return HttpResponseRedirect(request.path_info)
+    return HttpResponseRedirect(request.environ["HTTP_REFERER"])
 
 
 def unmark_lended(request, lended_game: LendedGame) -> HttpResponseRedirect:
@@ -296,7 +345,7 @@ def unmark_lended(request, lended_game: LendedGame) -> HttpResponseRedirect:
 
         messages.add_message(
             request,
-            15,
+            25,
             f"Le jeu {lended_game.game.name} a été correctement supprimé de vos "
             f"jeux empruntés",
         )
@@ -308,4 +357,4 @@ def unmark_lended(request, lended_game: LendedGame) -> HttpResponseRedirect:
             f"{lended_game.game.name}: {error}",
         )
 
-    return HttpResponseRedirect(request.path_info)
+    return HttpResponseRedirect(request.environ["HTTP_REFERER"])

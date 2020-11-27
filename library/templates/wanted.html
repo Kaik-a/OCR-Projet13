@@ -1,0 +1,23 @@
+{% extends "games.html" %}
+
+{% load static %}
+
+{% block title %}Liste d'envies{% endblock title %}
+
+{% block pagetitle %}Liste d'envies{% endblock pagetitle %}
+{% block find %}
+{% endblock find %}
+
+{% block save %}
+    <form class="delete-form" action="{% url "library:delete-wish" game.id %}" method="post">
+        {% csrf_token %}
+        <button class="delete-button" type="submit"><i class="fas fa-trash-alt"></i> Supprimer</button>
+    </form>
+{% endblock save %}
+
+{% block save2 %}
+    <form class="delete-form" action="{% url "library:delete-wish" game.id %}" method="post">
+        {% csrf_token %}
+        <button class="delete-button" type="submit"><i class="fas fa-trash-alt"></i> Supprimer</button>
+    </form>
+{% endblock save2 %}

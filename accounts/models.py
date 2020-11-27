@@ -24,3 +24,20 @@ class CustomUser(AbstractUser):
     """Make user's email unique"""
 
     email = models.EmailField(unique=True)
+
+
+class Friends(models.Model):
+    """class to make link between friends"""
+
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    friend = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="user_friend"
+    )
+
+    class Meta:
+        """Metaclass of Friends"""
+
+        unique_together = ("user", "friend")
+
+    def __str__(self):
+        return self.friend.username

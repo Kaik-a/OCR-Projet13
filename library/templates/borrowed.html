@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Jeux empruntés{% endblock title %}
+
+{% block masthead %}
+    <div class="col-lg-10 align-self-end">
+        <h1 class="text-uppercase text-white text-center font-weight-bold">{% block pagetitle %}Jeux empruntés{% endblock pagetitle %}</h1>
+        <hr class="divider my-4" />
+    </div>
+    <main class="h-100 w-100">
+        <div class="container h-75 w-100">
+            {% block replace %}{% endblock replace %}
+            <div class="row h-50 w-100">
+                {% for game in games %}
+                    {% if forloop.counter|divisibleby:3 %}
+                    <div class="col-md-4 text-center align-items-center justify-content-center d-flex">
+                        <figure class="games">
+                            <a class="games" href={% url "library:game" game.id %}>
+                                <img src="{{ game.image }}" class="product img-fluid">
+                                <figcaption>{{ game.name }}</figcaption>
+                            </a>
+                            {% with product as substitute %}
+                                {% block save %}
+                                    <form class="delete-form" action="{% url "library:delete_game" game.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button class="delete-button" type="submit"><i class="fas fa-trash-alt"></i> Supprimer</button>
+                                    </form>
+                                {% endblock save %}
+                            {% endwith %}
+                        </figure>
+                    </div>
+                        </div>
+                    {% if not forloop.last %}
+                    <div class="row h-50 w-100">
+                    {% endif %}
+                    {% else %}
+                            <div class="col-md-4 text-center align-items-center justify-content-center d-flex">
+                                <figure class="games">
+                                    <a class="games" href={% url "library:game" game.id %}>
+                                        <img src="{{ game.image }}" class="product img-fluid">
+                                        <figcaption>{{ game.name }}</figcaption>
+                                    </a>
+                                    {% with product as substitute %}
+                                        {% block save2 %}
+                                            <form class="delete-form" action="{% url "library:delete_game" game.id %}" method="post">
+                                                {% csrf_token %}
+                                                <button class="delete-button" type="submit"><i class="fas fa-trash-alt"></i> Supprimer</button>
+                                            </form>
+                                        {% endblock save2 %}
+                                    {% endwith %}
+                                </figure>
+                            </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+        </div>
+    </main>
+{% endblock masthead %}

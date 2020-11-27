@@ -47,9 +47,9 @@ def find_games(query: str, query_platform: str) -> List[Game]:
         if game.get("original_release_date"):
             release_date = str(game.get("original_release_date"))
         elif game.get("release_date"):
-            release_date = str(game.get("original_release_date"))
+            release_date = str(game.get("release_date"))
         elif game.get("expected_release_year"):
-            release_date = str(game.get("original_release_date")) + "-01-01"
+            release_date = str(game.get("expected_release_year")) + "-01-01"
         else:
             release_date = "1970-01-01"
 

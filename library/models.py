@@ -54,9 +54,9 @@ class OwnedGame(models.Model):
 
         unique_together = ("user", "game")
 
-    def __repr__(self):
+    def __str__(self):
         """owned's game representation"""
-        return f"{self.game.name} owned by {self.user.username}"
+        return f"{self.game.name}"
 
 
 class WantedGame(models.Model):
