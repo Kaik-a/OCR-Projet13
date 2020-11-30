@@ -31,8 +31,9 @@ class TestViews(TestLibrary):
                 "oooooooooooooooooooooooooooooooooooooooooooooooooooooooo long"
             ).save()
 
-    def test_lendedGame(self):
+    def test_LendedGame(self):
         """test on platfotm's model"""
+        models.LendedGame.objects.all().delete()
 
         lended_game = models.LendedGame(
             owned_game=self.owned_game,
