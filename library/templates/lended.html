@@ -15,7 +15,7 @@
         {{ form.media }}
         <button>Valider</button>
     </form>
-    {% for game in games %}
-        <li>{{ game.game.game.name}}</li>
+    {% for lended_game in games %}
+        <li>{{ lended_game.owned_game.game.name}}<a href="{% url "library:unmark-lended" lended_game.id %}"><button>Rendu</button></a></li>
     {% endfor %}
 {% endblock masthead %}

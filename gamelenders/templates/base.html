@@ -36,7 +36,7 @@
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "library:wanted" user.id%}">Liste d'Envies</a></li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "library:your-games" user.id %}">Vos Jeux</a></li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "library:lended" user.id%}">Prêts</a></li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "library:borrowed" user.id%}">Emprunts</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "library:borrowed" %}">Emprunts</a></li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "accounts:friends" %}">Amis</a></li>
                         {% endif %}
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url 'accounts:login' %}{% else %}{% url 'accounts:user_account'%}{% endif %}">{% if not request.user_agent.is_pc %}{% if request.user.is_anonymous %} Login{% else %} Votre Compte{% endif %}{% endif %}</a></li>

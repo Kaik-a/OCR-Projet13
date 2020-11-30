@@ -66,14 +66,18 @@ def lended(request, user: str) -> HttpResponse:
         form: LendGameForm = LendGameForm(request.POST, user=request.user)
 
         if form.is_valid():
-            owned_game = OwnedGame.objects.get(id=form.data.get("game"))
-            borrower = Friends.objects.get(id=form.data.get("borrower")).friend
+            owned_game = OwnedGame.objects.get(id=form.data.get("owned_game"))
+
+            borrower = form.data.get("borrower")
+
+            if borrower:
+                borrower = Friends.objects.get(id=borrower).friend
             unknown_borrower = form.data.get("unknown_borrower")
 
             try:
                 lended_game = LendedGame(
-                    game=owned_game,
-                    borrower=borrower,
+                    owned_game=owned_game,
+                    borrower=borrower if borrower else None,
                     not_registered_borrower=unknown_borrower,
                     lended_date=datetime.now(),
                     return_date=None,
@@ -84,7 +88,7 @@ def lended(request, user: str) -> HttpResponse:
                     request,
                     25,
                     f"Le jeu {owned_game.game.name} a été enregistré comme prêté "
-                    f"à {borrower.username or unknown_borrower}",
+                    f"à {borrower.username if borrower else unknown_borrower}",
                 )
             except IntegrityError:
                 messages.add_message(
@@ -98,7 +102,7 @@ def lended(request, user: str) -> HttpResponse:
 
     try:
         lended_games: Union[List[LendedGame], LendedGame] = LendedGame.objects.filter(
-            game__user=lender
+            owned_game__user=lender
         )
     except ObjectDoesNotExist:
         messages.add_message(request, 25, "Vous n'avez prêté aucun jeu")
@@ -318,7 +322,7 @@ def mark_lended(request, borrower: CustomUser, game_: Game) -> HttpResponseRedir
         messages.add_message(
             request,
             25,
-            f"Le jeu {lended_game.game.name} a été correctement ajouté à vos jeux "
+            f"Le jeu {lended_game.owned_game.name} a été correctement ajouté à vos jeux "
             f"empruntés",
         )
     except IntegrityError as error:
@@ -340,21 +344,24 @@ def unmark_lended(request, lended_game: LendedGame) -> HttpResponseRedirect:
     :param lended_game: game lended
     :rtype: HttpResponseRedirect
     """
+    lended_game_ = LendedGame.objects.get(id=lended_game)
     try:
-        lended_game.delete()
+        lended_game_.delete()
 
+        borrower = lended_game_.borrower
         messages.add_message(
             request,
             25,
-            f"Le jeu {lended_game.game.name} a été correctement supprimé de vos "
-            f"jeux empruntés",
+            f"Le jeu {lended_game_.owned_game.game.name} emprunté par "
+            f"{borrower.username if borrower else lended_game_.not_registered_borrower}"
+            f"a été correctement supprimé de vos jeux empruntés",
         )
     except IntegrityError as error:
         messages.add_message(
             request,
             40,
             f"Une erreur a été rencontrée lors de la suppression du jeu "
-            f"{lended_game.game.name}: {error}",
+            f"{lended_game_.owned_game.game.name}: {error}",
         )
 
     return HttpResponseRedirect(request.environ["HTTP_REFERER"])

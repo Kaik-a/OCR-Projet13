@@ -80,7 +80,7 @@ class LendedGame(models.Model):
     """lended games"""
 
     id: uuid4 = models.UUIDField(default=uuid4, primary_key=True)
-    game: OwnedGame = models.ForeignKey(OwnedGame, on_delete=models.CASCADE)
+    owned_game: OwnedGame = models.ForeignKey(OwnedGame, on_delete=models.CASCADE)
     borrower: CustomUser = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, null=True
     )
@@ -90,4 +90,9 @@ class LendedGame(models.Model):
 
     def __repr__(self):
         """lended game's representation"""
-        return f"{self.game} borrowed by {self.borrower.username}"
+        return f"{self.owned_game} borrowed by {self.borrower.username}"
+
+    class Meta:
+        """A game can't be borrowed twice"""
+
+        unique_together = ("owned_game", "return_date")

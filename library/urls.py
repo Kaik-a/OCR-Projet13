@@ -8,7 +8,7 @@ app_name = "library"
 urlpatterns = [
     path("add-to-library/<game_>", views.add_to_library, name="add-to-library"),
     path("add-wish/<game_>", views.add_wish, name="add-wish"),
-    path("borrowed/<user>", views.borrowed, name="borrowed"),
+    path("borrowed/", views.borrowed, name="borrowed"),
     path(
         "delete-from-library/<owned_game>",
         views.delete_from_library,

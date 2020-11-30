@@ -23,7 +23,7 @@ class LendGameForm(forms.Form):
     def __init__(self, *args, **kwargs):
         user = kwargs.pop("user", None)
         super().__init__(*args, **kwargs)
-        self.fields["game"] = forms.ModelChoiceField(
+        self.fields["owned_game"] = forms.ModelChoiceField(
             label="Jeu",
             empty_label="",
             queryset=OwnedGame.objects.filter(user=user),
