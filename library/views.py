@@ -303,38 +303,6 @@ def delete_from_library(request, owned_game: OwnedGame) -> HttpResponseRedirect:
     return HttpResponseRedirect(request.environ["HTTP_REFERER"])
 
 
-def mark_lended(request, borrower: CustomUser, game_: Game) -> HttpResponseRedirect:
-    """
-    Mark a Game as lended.
-
-    :param request: django's request
-    :param borrower: user borrowing the game
-    :param game_: game lended
-    :rtype: HttpResponseRedirect
-    """
-    lended_game: LendedGame = LendedGame(
-        lender=request.user, borrower=borrower, game=game_
-    )
-    try:
-        lended_game.save()
-
-        messages.add_message(
-            request,
-            25,
-            f"Le jeu {lended_game.owned_game.name} a été correctement ajouté à vos jeux "
-            f"empruntés",
-        )
-    except IntegrityError as error:
-        messages.add_message(
-            request,
-            40,
-            f"Une erreur a été rencontrée lors de l'ajout de {game_.name} à vos jeux "
-            f"empruntés: {error}",
-        )
-
-    return HttpResponseRedirect(request.environ["HTTP_REFERER"])
-
-
 def unmark_lended(request, lended_game: LendedGame) -> HttpResponseRedirect:
     """
     Unmark a game which has been lended.
@@ -345,7 +313,10 @@ def unmark_lended(request, lended_game: LendedGame) -> HttpResponseRedirect:
     """
     lended_game_ = LendedGame.objects.get(id=lended_game)
     try:
-        lended_game_.delete()
+        lended_game_.return_date = datetime.now()
+        lended_game_.returned = True
+
+        lended_game_.save()
 
         borrower = lended_game_.borrower
         messages.add_message(

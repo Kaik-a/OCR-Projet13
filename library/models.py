@@ -84,7 +84,9 @@ class LendedGame(models.Model):
     borrower: CustomUser = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, null=True
     )
-    not_registered_borrower: str = models.CharField(max_length=100, null=True)
+    not_registered_borrower: str = models.CharField(
+        max_length=100, default=None, null=True
+    )
     lended_date: datetime = models.DateTimeField(default=datetime.now)
     return_date: datetime = models.DateTimeField(null=True)
     returned: bool = models.BooleanField(default=False)

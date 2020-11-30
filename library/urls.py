@@ -17,7 +17,6 @@ urlpatterns = [
     path("delete-wish/<wanted_game>", views.delete_wish, name="delete-wish"),
     path("game/<game_id>", views.game, name="game"),
     path("lended/<user>", views.lended, name="lended"),
-    path("mark-lended/<owned_game>", views.mark_lended, name="mark-lended"),
     path("results/<platform>/<query>", views.results, name="results"),
     path("unmark-lended/<lended_game>", views.unmark_lended, name="unmark-lended"),
     path("wanted/<user>", views.wanted, name="wanted"),
