@@ -23,10 +23,6 @@
                             </a>
                             {% with product as substitute %}
                                 {% block save %}
-                                    <form class="delete-form" action="{% url "library:delete_game" game.id %}" method="post">
-                                        {% csrf_token %}
-                                        <button class="delete-button" type="submit"><i class="fas fa-trash-alt"></i> Supprimer</button>
-                                    </form>
                                 {% endblock save %}
                             {% endwith %}
                         </figure>
@@ -44,10 +40,6 @@
                                     </a>
                                     {% with product as substitute %}
                                         {% block save2 %}
-                                            <form class="delete-form" action="{% url "library:delete_game" game.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button class="delete-button" type="submit"><i class="fas fa-trash-alt"></i> Supprimer</button>
-                                            </form>
                                         {% endblock save2 %}
                                     {% endwith %}
                                 </figure>

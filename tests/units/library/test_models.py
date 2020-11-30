@@ -1,7 +1,7 @@
 """Library's model"""
 from datetime import datetime
 
-from django.db import DataError
+from django.db import DataError, IntegrityError, transaction
 
 from library import models
 from tests.test_library_pattern import TestLibrary
@@ -33,11 +33,38 @@ class TestViews(TestLibrary):
 
     def test_lendedGame(self):
         """test on platfotm's model"""
-        with self.assertRaises(ValueError):
-            models.LendedGame(
-                owned_game=self.game,
-                borrower=self.user,
-                not_registered_borrower=None,
-                lended_date=datetime.now(),
-                return_date=None,
-            )
+
+        lended_game = models.LendedGame(
+            owned_game=self.owned_game,
+            borrower=self.user,
+            not_registered_borrower=None,
+            lended_date=datetime.now(),
+            return_date=None,
+        )
+
+        lended_game.save()
+
+        with transaction.atomic():
+            with self.assertRaises(IntegrityError):
+                # It's not possiblie to lend two times same game
+                models.LendedGame(
+                    owned_game=self.owned_game,
+                    borrower=self.user,
+                    not_registered_borrower=None,
+                    lended_date=datetime.now(),
+                    return_date=None,
+                ).save()
+
+        lended_game.return_date = datetime.now()
+        lended_game.returned = True
+
+        lended_game.save()
+
+        # As game is returned you can lend it
+        models.LendedGame(
+            owned_game=self.owned_game,
+            borrower=self.user,
+            not_registered_borrower=None,
+            lended_date=datetime.now(),
+            return_date=None,
+        ).save()

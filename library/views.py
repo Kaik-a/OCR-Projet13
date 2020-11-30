@@ -24,14 +24,13 @@ def borrowed(request) -> HttpResponse:
     :rtype: HttpResponse
     """
     try:
-        borrowed_games: Union[List[LendedGame], LendedGame] = LendedGame.objects.filter(
-            borrower=request.user
-        )
+        borrowed_games = LendedGame.objects.filter(borrower=request.user)
     except ObjectDoesNotExist:
         messages.add_message(request, 25, "Vous n'avez pas encore emprunté de jeu")
         return render(request, "borrowed.html")
 
-    context = {"borrowed_games": borrowed_games}
+    borrowed_games = [borrowed_game.owned_game.game for borrowed_game in borrowed_games]
+    context = {"games": borrowed_games}
 
     return render(request, "borrowed.html", context)
 
