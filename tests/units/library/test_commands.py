@@ -1,41 +1,44 @@
 """Tests on library's commands"""
 from unittest.mock import patch
 
-from django.test import TestCase
-
 from library.commands.commands import find_games, get_platform, get_release_date
 
+from ...test_library_pattern import TestLibrary
 from . import GAME
 
 
-class TestCommand(TestCase):
+class TestCommand(TestLibrary):
     """class to test commands"""
 
     def test_get_platform(self):
         """Test get_plaform method"""
+        # PlayStation 4 is required and is in game's platforms
         self.assertEqual(get_platform(GAME, "PlayStation 4").name, "PlayStation 4")
+        # PlayStation is required and is in game's platforms
         self.assertEqual(get_platform(GAME, "PlayStation").name, "PlayStation")
+        # PS5 is required and is not in game's platforms
         self.assertEqual(get_platform(GAME, "PS5").name, "PlayStation")
 
     def test_get_release_date(self):
         """Test get_release_date method"""
 
+        # Take game original_release_dater
         self.assertEqual(get_release_date(GAME), "1997-01-31")
 
         GAME["original_release_date"] = None
 
-        GAME["release_date"] = "1997-02-01"
-
+        # No original_release_date set, get_release_date should take release_date
         self.assertEqual(get_release_date(GAME), "1997-02-01")
 
         GAME["release_date"] = None
 
-        GAME["expected_release_year"] = "1997"
-
+        # No original_release_date nor release_date set, it should take
+        # expected_release_year
         self.assertEqual(get_release_date(GAME), "1997-01-01")
 
         GAME["expected_release_year"] = None
 
+        # No date are set, get_release_date should give a generic one
         self.assertEqual(get_release_date(GAME), "1970-01-01")
 
     def test_find_games(self):

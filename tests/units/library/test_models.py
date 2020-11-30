@@ -4,10 +4,10 @@ from datetime import datetime
 from django.db import DataError
 
 from library import models
-from tests.test_pattern import TestPattern
+from tests.test_library_pattern import TestLibrary
 
 
-class TestViews(TestPattern):
+class TestViews(TestLibrary):
     """Test library's view"""
 
     def test_Game(self):

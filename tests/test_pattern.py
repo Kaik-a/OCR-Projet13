@@ -1,12 +1,9 @@
 """Test pattern for other test"""
-from datetime import datetime
 from unittest.mock import patch
-from uuid import uuid4
 
 from django.test import RequestFactory, TestCase
 
-from accounts.models import AwaitingData, CustomUser
-from library import models
+from accounts.models import CustomUser
 
 
 class TestPattern(TestCase):
@@ -23,62 +20,8 @@ class TestPattern(TestCase):
 
         self.client.login(username="test1", password="test1@1234")
 
-        self.awaiting_data_1 = AwaitingData(
-            guid=uuid4(), type="password", key="password", value="1234"
-        )
-
-        self.awaiting_data_1.save()
-
-        self.uuid_subscription = uuid4()
-        self.awaiting_data_2 = AwaitingData(
-            guid=self.uuid_subscription,
-            type="subscription",
-            key="login",
-            value="test_login",
-        )
-
-        awaiting_subscription = [
-            self.awaiting_data_2,
-            AwaitingData(
-                guid=self.uuid_subscription,
-                type="subscription",
-                key="first_name",
-                value="test_first_name",
-            ),
-            AwaitingData(
-                guid=self.uuid_subscription,
-                type="subscription",
-                key="last_name",
-                value="test_last_name",
-            ),
-            AwaitingData(
-                guid=self.uuid_subscription,
-                type="subscription",
-                key="email",
-                value="test2@test.com",
-            ),
-            AwaitingData(
-                guid=self.uuid_subscription,
-                type="subscription",
-                key="password",
-                value="12345",
-            ),
-        ]
-
-        for data in awaiting_subscription:
-            data.save()
-
-        self.platform = models.Platform(
-            name="PS4",
-        )
-        self.game = models.Game(
-            name="Game",
-            platform=self.platform,
-            release_date=datetime(day=21, month=10, year=1991),
-        )
-
-        self.platform.save()
-
-        self.game.save()
-
         self.stop_messages = patch("django.contrib.messages.add_message").start()
+
+        self.user2 = CustomUser.objects.create_user(
+            username="test2", password="test2@1234", email="test2@test.com"
+        )

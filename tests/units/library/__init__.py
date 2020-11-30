@@ -1941,7 +1941,7 @@ GAME = {
     "expected_release_day": None,
     "expected_release_month": None,
     "expected_release_quarter": None,
-    "expected_release_year": None,
+    "expected_release_year": 1997,
     "guid": "3030-13053",
     "id": 13053,
     "image": {
@@ -2119,4 +2119,5 @@ GAME = {
     ],
     "resource_type": "game",
     "site_detail_url": "https://www.giantbomb.com/final-fantasy-vii/3030-13053/",
+    "release_date": "1997-02-01",
 }
