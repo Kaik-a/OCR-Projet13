@@ -1,10 +1,12 @@
 """Test pattern for other test"""
+from datetime import datetime
 from unittest.mock import patch
 from uuid import uuid4
 
 from django.test import RequestFactory, TestCase
 
 from accounts.models import AwaitingData, CustomUser
+from library import models
 
 
 class TestPattern(TestCase):
@@ -65,5 +67,18 @@ class TestPattern(TestCase):
 
         for data in awaiting_subscription:
             data.save()
+
+        self.platform = models.Platform(
+            name="PS4",
+        )
+        self.game = models.Game(
+            name="Game",
+            platform=self.platform,
+            release_date=datetime(day=21, month=10, year=1991),
+        )
+
+        self.platform.save()
+
+        self.game.save()
 
         self.stop_messages = patch("django.contrib.messages.add_message").start()
