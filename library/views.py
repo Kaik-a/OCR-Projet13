@@ -313,7 +313,6 @@ def unmark_lended(request, lended_game: LendedGame) -> HttpResponseRedirect:
     """
     lended_game_ = LendedGame.objects.get(id=lended_game)
     try:
-        lended_game_.return_date = datetime.now()
         lended_game_.returned = True
 
         lended_game_.save()

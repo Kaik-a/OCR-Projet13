@@ -3,6 +3,8 @@ from datetime import datetime
 from uuid import uuid4
 
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 from accounts.models import CustomUser
 
@@ -87,7 +89,7 @@ class LendedGame(models.Model):
     not_registered_borrower: str = models.CharField(
         max_length=100, default=None, null=True
     )
-    lended_date: datetime = models.DateTimeField(default=datetime.now)
+    lended_date: datetime = models.DateTimeField(auto_now_add=True)
     return_date: datetime = models.DateTimeField(null=True)
     returned: bool = models.BooleanField(default=False)
 
@@ -99,3 +101,10 @@ class LendedGame(models.Model):
         """A game can't be borrowed twice"""
 
         unique_together = ("owned_game", "returned")
+
+
+@receiver(pre_save, sender=LendedGame)
+def handle_return_date(sender, **kwargs):
+    """Actualize return date if returned"""
+    if kwargs["instance"].returned:
+        kwargs["instance"].return_date = datetime.now()
