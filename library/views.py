@@ -21,7 +21,7 @@ from .context_processors.navbar_search_decorator import navbar_search_decorator
 
 
 @method_decorator(navbar_search_decorator, name="dispatch")
-class BorrewedView(ListView, LoginRequiredMixin):
+class BorrowedView(ListView, LoginRequiredMixin):
     """Load borrowed games"""
 
     model = LendedGame
@@ -63,7 +63,7 @@ def game(request, game_id: str) -> HttpResponse:
     try:
         game_: Game = Game.objects.get(id=game_id)
     except ObjectDoesNotExist:
-        return render(request, "games.html")
+        return render(request, "game_view.html")
 
     return render(request, "game.html", {"game": game_})
 

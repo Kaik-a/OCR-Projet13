@@ -274,8 +274,9 @@ class FriendsView(ListView, FormView, LoginRequiredMixin):
     def form_valid(self, form):
         """Action after form's validation"""
         user = self.request.user
+        friend_to_add_id = form.data.get("user")
         try:
-            friend_to_add: CustomUser = CustomUser.objects.get(id=form.data.get("user"))
+            friend_to_add: CustomUser = CustomUser.objects.get(id=friend_to_add_id)
 
             relationship = Friends(user=user, friend=friend_to_add)
 
@@ -290,7 +291,7 @@ class FriendsView(ListView, FormView, LoginRequiredMixin):
             messages.add_message(
                 self.request,
                 40,
-                f"Aucun utilisateur trouvé ayant pour nom d'utilisateur {friend_to_add.username}",
+                f"Aucun utilisateur trouvé ayant pour id {friend_to_add_id}",
             )
         except IntegrityError:
             messages.add_message(
