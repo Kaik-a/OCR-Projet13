@@ -5,6 +5,9 @@
 {% block title %}Vos jeux{% endblock title %}
 
 {% block masthead %}
+    <div>
+         <button data-toggle="modal" data-target="#lendModal">Prêter un jeu</button>
+    </div>
 <table class="table">
     <tr>
         <thead class="thead-light">
@@ -32,13 +35,10 @@
                 <td>{{ lended_game.lended_date }}</td>
                     {% endwith %}
                 {% else %}
-                        <div>
-                             <a href="" data-toggle="modal" data-target="#lendModal">Prêter</a>
-                        </div>
                 </td>
                     <td></td>
                 {% endif %}
-                <td><a href="{% url "library:delete-from-library" owned_game.game.id%}"><button><i class="fas fa-trash"></i></button></a></td>
+                <td><a href="{% url "library:delete-from-library" owned_game.game.id%}"><button>Supprimer</button></a></td>
             </tr>
             {% endfor %}
         </tbody>
