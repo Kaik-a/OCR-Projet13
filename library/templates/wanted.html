@@ -3,24 +3,23 @@
 {% block title %}Liste d'envies{% endblock title %}
 
 {% block masthead %}
-<table class="table">
-    <tr>
-        <thead class="thead-light">
-            <tr>
-                <th scope="col">Jeu</th>
-                <th scope="col">Plateforme</th>
-                <th scope="col">Supprimer</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for wanted_game in wanted_games %}
-            <tr>
-                <td><a href="{% url "library:game" wanted_game.game.id %}">{{ wanted_game.game.name }}</a></td>
-                <td>{{ wanted_game.game.platform }}</td>
-                <td><a href="{% url "library:delete-wish" wanted_game.game.id%}"><button><i class="fas fa-trash"></i></button></a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Jeu</th>
+            <th scope="col">Plateforme</th>
+            <th scope="col">Supprimer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for wanted_game in wanted_games %}
+        <tr>
+            <td><a href="{% url "library:game" wanted_game.game.id %}">{{ wanted_game.game.name }}</a></td>
+            <td>{{ wanted_game.game.platform }}</td>
+            <td><a href="{% url "library:delete-wish" wanted_game.game.id%}"><button class="btn btn-danger"><i class="fas fa-trash"></i></button></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 {% if is_paginated %}
     {% include "_pagination.html" %}

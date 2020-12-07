@@ -18,17 +18,17 @@
                     <div class="col-md-4 text-center align-items-center justify-content-center d-flex">
                         <figure class="games">
                             <a class="games" href={% url "library:game" game.id %}>
-                                <img src="{{ game.image }}" class="product img-fluid">
+                                <img src="{{ game.image }}" class="game-img img-fluid">
                                 <figcaption>{{ game.name }}</figcaption>
                             </a>
                             {% block save %}
                                 <form class="delete-form" action="{% url "library:add-to-library" game.id%}" method="post">
                                     {% csrf_token %}
-                                    <button class="delete-button" type="submit">+ bibliothèque</button>
+                                    <button class="btn btn-info"type="submit"><i class="fas fa-plus"></i> bibliothèque</button>
                                 </form>
                                 <form class="delete-form" action="{% url "library:add-wish" game.id%}" method="post">
                                     {% csrf_token %}
-                                    <button class="delete-button" type="submit">+ liste d'envie</button>
+                                    <button class="btn btn-success" type="submit"><i class="fas fa-plus"></i> liste d'envies</button>
                                 </form>
                             {% endblock save %}
                         </figure>
@@ -41,17 +41,17 @@
                             <div class="col-md-4 text-center align-items-center justify-content-center d-flex">
                                 <figure class="games">
                                     <a class="games" href={% url "library:game" game.id %}>
-                                        <img src="{{ game.image }}" class="product img-fluid">
+                                        <img src="{{ game.image }}" class="game-img img-fluid">
                                         <figcaption>{{ game.name }}</figcaption>
                                     </a>
                                     {% block save2 %}
                                         <form class="delete-form" action="{% url "library:add-to-library" game.id%}" method="post">
                                             {% csrf_token %}
-                                            <button class="delete-button" type="submit">+ bibliothèque</button>
+                                            <button class="btn btn-info" type="submit"><i class="fas fa-plus"></i> bibliothèque</button>
                                         </form>
                                         <form class="delete-form" action="{% url "library:add-wish" game.id%}" method="post">
                                             {% csrf_token %}
-                                            <button class="delete-button" type="submit">+ liste d'envie</button>
+                                            <button class="btn btn-success" type="submit"><i class="fas fa-plus"></i> liste d'envies</button>
                                         </form>
                                     {% endblock save2 %}
                                 </figure>

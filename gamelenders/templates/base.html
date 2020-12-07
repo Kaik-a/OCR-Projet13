@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html class="w-100" lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -19,14 +19,14 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static "css/styles.css" %}" rel="stylesheet" />
     </head>
-    <body id="page-top">
-    <div class="container-fluid w-100">
+    <body class="w-100" id="page-top">
+    <div class="w-100">
         {% include "message.html" %}
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="{% url "home" %}">
-                     <img src="{% static "assets/img/favicon.ico" %}" width="30" height="30" class="d-inline-block align-top" alt="">
+            <div class="container-fluid">
+                <a class="navbar-brand js-scroll-trigger text-left" href="{% url "home" %}">
+                     <img src="{% static "assets/img/favicon.ico" %}" width="30" height="30" class="d-inline-block align-top rounded-circle" alt="">
                     GameLenders
                 </a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -38,7 +38,7 @@
                                     {% csrf_token %}
                                     {{ navbar_form }}
                                     {{ navbar_form.media }}
-                                    <button id="search-button">OK</button>
+                                    <button class="btn btn-light" id="search-button">OK</button>
                                 </form>
                             </a></li>
                             <li class="nav-item dropdown">

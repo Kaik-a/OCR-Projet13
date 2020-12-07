@@ -263,6 +263,11 @@ def add_to_library(request, game_: str) -> HttpResponseRedirect:
     try:
         new_game.save()
 
+        try:
+            WantedGame.objects.get(game=game_, user=request.user).delete()
+        except ObjectDoesNotExist:
+            pass
+
         messages.add_message(
             request,
             25,
