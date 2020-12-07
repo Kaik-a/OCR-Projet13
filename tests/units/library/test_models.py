@@ -56,7 +56,7 @@ class TestViews(TestLibrary):
                     return_date=None,
                 ).save()
 
-        lended_game.return_date = datetime.now()
+        # returned is automatically triggerd while return_date is set
         lended_game.returned = True
 
         lended_game.save()

@@ -2,7 +2,8 @@
 from datetime import datetime
 from uuid import uuid4
 
-from django.db import models
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import IntegrityError, models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
@@ -101,5 +102,13 @@ class LendedGame(models.Model):
 @receiver(pre_save, sender=LendedGame)
 def handle_return_date(sender, **kwargs):  # pylint: disable=unused-argument
     """Actualize return date if returned"""
-    if kwargs["instance"].returned:
-        kwargs["instance"].return_date = datetime.now()
+    new_object = kwargs["instance"]
+    if new_object.returned:
+        new_object.return_date = datetime.now()
+    else:
+        try:
+            lended = LendedGame.objects.get(owned_game=new_object.owned_game)
+            if lended.id != new_object.id and lended.returned is False:
+                raise IntegrityError
+        except ObjectDoesNotExist:
+            pass
