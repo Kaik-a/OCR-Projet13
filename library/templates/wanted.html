@@ -1,23 +1,29 @@
-{% extends "games.html" %}
-
-{% load static %}
+{% extends "base.html" %}
 
 {% block title %}Liste d'envies{% endblock title %}
 
-{% block pagetitle %}Liste d'envies{% endblock pagetitle %}
-{% block find %}
-{% endblock find %}
+{% block masthead %}
+<table class="table">
+    <tr>
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Jeu</th>
+                <th scope="col">Plateforme</th>
+                <th scope="col">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for wanted_game in wanted_games %}
+            <tr>
+                <td><a href="{% url "library:game" wanted_game.game.id %}">{{ wanted_game.game.name }}</a></td>
+                <td>{{ wanted_game.game.platform }}</td>
+                <td><a href="{% url "library:delete-wish" wanted_game.game.id%}"><button><i class="fas fa-trash"></i></button></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+</table>
+{% if is_paginated %}
+    {% include "_pagination.html" %}
+{% endif %}
 
-{% block save %}
-    <form class="delete-form" action="{% url "library:delete-wish" game.id %}" method="post">
-        {% csrf_token %}
-        <button class="delete-button" type="submit"><i class="fas fa-trash-alt"></i> Supprimer</button>
-    </form>
-{% endblock save %}
-
-{% block save2 %}
-    <form class="delete-form" action="{% url "library:delete-wish" game.id %}" method="post">
-        {% csrf_token %}
-        <button class="delete-button" type="submit"><i class="fas fa-trash-alt"></i> Supprimer</button>
-    </form>
-{% endblock save2 %}
+{% endblock %}

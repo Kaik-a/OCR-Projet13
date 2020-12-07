@@ -18,8 +18,24 @@
         </div>
     </div>
     {% endblock find %}
+<table class="table">
+    <tr>
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for relationship in friends %}
+            <tr>
+                <td>{{ relationship.friend.username }}</td>
+                <td><a href="{% url "accounts:delete-friend" relationship.friend %}"><button><i class="fas fa-trash"></i></button></a></td>
+            {% endfor %}
+        </tbody>
+</table>
+{% if is_paginated %}
+    {% include "_pagination.html" %}
+{% endif %}
 
-    {% for relationship in friends %}
-        <li>{{ relationship.friend.username }}<a href="{% url "accounts:delete-friend" relationship.friend%}"><button> Supprimer</button></a></li>
-    {% endfor %}
 {% endblock masthead %}

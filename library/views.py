@@ -1,40 +1,57 @@
 """Views for library"""
 from datetime import datetime
-from typing import List, Union
 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
-from django.urls import reverse
+from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views.generic import FormView, ListView
 
-from accounts.models import CustomUser, Friends
-from library.forms import LendGameForm, SearchGameForm
+from accounts.models import Friends
+from library.forms import LendGameForm
 from library.models import Game, LendedGame, OwnedGame, WantedGame
 
 from .commands.commands import find_games
+from .context_processors.navbar_search_decorator import navbar_search_decorator
 
 
-def borrowed(request) -> HttpResponse:
-    """
-    Display borrowed games for a given user.
+@method_decorator(navbar_search_decorator, name="dispatch")
+class BorrewedView(ListView, LoginRequiredMixin):
+    """Load borrowed games"""
 
-    :param request: Django's request
-    :rtype: HttpResponse
-    """
-    try:
-        borrowed_games = LendedGame.objects.filter(borrower=request.user)
-    except ObjectDoesNotExist:
-        messages.add_message(request, 25, "Vous n'avez pas encore emprunté de jeu")
-        return render(request, "borrowed.html")
+    model = LendedGame
 
-    borrowed_games = [borrowed_game.owned_game.game for borrowed_game in borrowed_games]
-    context = {"games": borrowed_games}
+    template_name = "borrowed.html"
+    context_object_name = "borrowed_games"
+    paginate_by = 10
 
-    return render(request, "borrowed.html", context)
+    def get_queryset(self):
+        """Get borrowed games"""
+        return self.model.objects.filter(borrower=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        """Construct context"""
+        context = super().get_context_data(**kwargs)
+        borrowed_games = self.get_queryset()
+        page = self.request.GET.get("page")
+        paginator = Paginator(borrowed_games, self.paginate_by)
+        try:
+            games = paginator.page(page)
+        except PageNotAnInteger:
+            games = paginator.page(1)
+        except EmptyPage:
+            games = paginator.page(paginator.num_pages)
+        context["games"] = games
+        return context
 
 
+@login_required
+@navbar_search_decorator
 def game(request, game_id: str) -> HttpResponse:
     """
     Load game's page.
@@ -51,65 +68,8 @@ def game(request, game_id: str) -> HttpResponse:
     return render(request, "game.html", {"game": game_})
 
 
-def lended(request, user: str) -> HttpResponse:
-    """
-    Display lended games for a given user.
-
-    :param request: Django's request
-    :param user: gamelender user
-    :rtype: HttpResponse
-    """
-    lender: CustomUser = CustomUser.objects.get(id=user)
-
-    if request.method == "POST":
-        form: LendGameForm = LendGameForm(request.POST, user=request.user)
-
-        if form.is_valid():
-            owned_game = OwnedGame.objects.get(id=form.data.get("owned_game"))
-
-            borrower = form.data.get("borrower")
-
-            if borrower:
-                borrower = Friends.objects.get(id=borrower).friend
-            unknown_borrower = form.data.get("unknown_borrower")
-
-            try:
-                lended_game = LendedGame(
-                    owned_game=owned_game,
-                    borrower=borrower if borrower else None,
-                    not_registered_borrower=unknown_borrower,
-                    lended_date=datetime.now(),
-                    return_date=None,
-                )
-                lended_game.save()
-
-                messages.add_message(
-                    request,
-                    25,
-                    f"Le jeu {owned_game.game.name} a été enregistré comme prêté "
-                    f"à {borrower.username if borrower else unknown_borrower}",
-                )
-            except IntegrityError:
-                messages.add_message(
-                    request,
-                    40,
-                    "Le jeu que vous souhaitez ajouter a déjà été emprunté",
-                )
-
-    else:
-        form: LendGameForm = LendGameForm(user=request.user)
-
-    try:
-        lended_games: Union[List[LendedGame], LendedGame] = LendedGame.objects.filter(
-            owned_game__user=lender
-        )
-    except ObjectDoesNotExist:
-        messages.add_message(request, 25, "Vous n'avez prêté aucun jeu")
-        return render(request, "lended.html")
-
-    return render(request, "lended.html", {"form": form, "games": lended_games})
-
-
+@login_required
+@navbar_search_decorator
 def results(request, platform: str, query: str) -> HttpResponse:
     """
     Display results for a given query.
@@ -124,63 +84,108 @@ def results(request, platform: str, query: str) -> HttpResponse:
     return render(request, "results.html", {"games": game_list})
 
 
-def wanted(request, user: str) -> HttpResponse:
-    """
-    Display wanted games for a given user.
+@method_decorator(navbar_search_decorator, name="dispatch")
+class WantedView(ListView, LoginRequiredMixin):
+    """Load wanted games"""
 
-    :param request: Django's request
-    :param user: gamelender user
-    :rtype: HttpResponse
-    """
-    user_ = CustomUser.objects.get(id=user)
+    model = WantedGame
+    template_name = "wanted.html"
+    context_object_name = "wanted_games"
+    paginate_by = 10
 
-    try:
-        wanted_games: Union[List[WantedGame], WantedGame] = WantedGame.objects.filter(
-            user=user_
-        )
-    except ObjectDoesNotExist:
-        messages.add_message(
-            request, 25, "Vous n'avez aucun jeu dans votre liste d'envies"
-        )
-        return redirect(reverse("home"))
+    def get_queryset(self):
+        """Get wanted games"""
+        return self.model.objects.filter(user=self.request.user)
 
-    games = [wanted_game.game for wanted_game in wanted_games]
+    def get_context_data(self, **kwargs):
+        """Construct context"""
+        context = super().get_context_data(**kwargs)
+        wanted_games = self.get_queryset()
+        page = self.request.GET.get("page")
+        paginator = Paginator(wanted_games, self.paginate_by)
+        try:
+            games = paginator.page(page)
+        except PageNotAnInteger:
+            games = paginator.page(1)
+        except EmptyPage:
+            games = paginator.page(paginator.num_pages)
+        context["games"] = games
+        return context
 
-    return render(request, "wanted.html", {"games": games})
 
+@method_decorator(navbar_search_decorator, name="dispatch")
+class GameListView(ListView, FormView, LoginRequiredMixin):
+    """Load owned games"""
 
-def your_games(request, user: str) -> HttpResponse:
-    """
-    Display user's games.
+    model = OwnedGame
+    template_name = "game_view.html"
+    context_object_name = "owned_games"
+    paginate_by = 10
 
-    :param request: Django's request
-    :param user: gamelender user
-    :rtype: HttpResponse
-    """
-    user_: CustomUser = CustomUser.objects.get(id=user)
+    form_class = LendGameForm
+    success_url = "games"
 
-    games: Union[List[OwnedGame], OwnedGame] = OwnedGame.objects.filter(user=user_)
-    if request.method == "POST":
-        form: SearchGameForm = SearchGameForm(request.POST)
+    def get_form_kwargs(self):
+        """Get user in form"""
+        kwargs = super().get_form_kwargs()
+        kwargs["user"] = self.request.user
+        return kwargs
 
-        if form.is_valid():
-            return redirect(
-                reverse(
-                    "library:results",
-                    kwargs={
-                        "platform": form.data.get("platform"),
-                        "query": form.data.get("game"),
-                    },
-                )
+    def form_valid(self, form):
+        """Action if form is valid"""
+        owned_game = OwnedGame.objects.get(id=form.data.get("owned_game"))
+
+        borrower = form.data.get("borrower")
+
+        if borrower:
+            borrower = Friends.objects.get(id=borrower).friend
+        unknown_borrower = form.data.get("unknown_borrower")
+
+        try:
+            lended_game = LendedGame(
+                owned_game=owned_game,
+                borrower=borrower if borrower else None,
+                not_registered_borrower=unknown_borrower,
+                lended_date=datetime.now(),
+                return_date=None,
             )
-    else:
-        form: SearchGameForm = SearchGameForm()
+            lended_game.save()
 
-    games: Union[List[Game], Game] = [owned_game.game for owned_game in games]
+            messages.add_message(
+                self.request,
+                25,
+                f"Le jeu {owned_game.game.name} a été enregistré comme prêté "
+                f"à {borrower.username if borrower else unknown_borrower}",
+            )
+        except IntegrityError:
+            messages.add_message(
+                self.request,
+                40,
+                "Le jeu que vous souhaitez ajouter a déjà été emprunté",
+            )
+        return super().form_valid(form)
 
-    return render(request, "games.html", {"form": form, "games": games})
+    def get_queryset(self):
+        """Get owned games"""
+        return self.model.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        """Construct context"""
+        context = super().get_context_data(**kwargs)
+        owned_games = self.get_queryset()
+        page = self.request.GET.get("page")
+        paginator = Paginator(owned_games, self.paginate_by)
+        try:
+            games = paginator.page(page)
+        except PageNotAnInteger:
+            games = paginator.page(1)
+        except EmptyPage:
+            games = paginator.page(paginator.num_pages)
+        context["games"] = games
+        return context
 
 
+@login_required
 def add_wish(request, game_: str) -> HttpResponseRedirect:
     """
     Add a game to user's wish list.
@@ -210,6 +215,7 @@ def add_wish(request, game_: str) -> HttpResponseRedirect:
     return HttpResponseRedirect(request.environ["HTTP_REFERER"])
 
 
+@login_required
 def delete_wish(request, wanted_game: WantedGame) -> HttpResponseRedirect:
     """
     Delete a game which was in wish list.
@@ -242,6 +248,7 @@ def delete_wish(request, wanted_game: WantedGame) -> HttpResponseRedirect:
     return HttpResponseRedirect(request.environ["HTTP_REFERER"])
 
 
+@login_required
 def add_to_library(request, game_: str) -> HttpResponseRedirect:
     """
     Add a game to user's library.
@@ -271,6 +278,7 @@ def add_to_library(request, game_: str) -> HttpResponseRedirect:
     return HttpResponseRedirect(request.environ["HTTP_REFERER"])
 
 
+@login_required
 def delete_from_library(request, owned_game: OwnedGame) -> HttpResponseRedirect:
     """
     Delete a game from user's library.
@@ -303,6 +311,7 @@ def delete_from_library(request, owned_game: OwnedGame) -> HttpResponseRedirect:
     return HttpResponseRedirect(request.environ["HTTP_REFERER"])
 
 
+@login_required
 def unmark_lended(request, lended_game: LendedGame) -> HttpResponseRedirect:
     """
     Unmark a game which has been lended.
@@ -323,7 +332,7 @@ def unmark_lended(request, lended_game: LendedGame) -> HttpResponseRedirect:
             25,
             f"Le jeu {lended_game_.owned_game.game.name} emprunté par "
             f"{borrower.username if borrower else lended_game_.not_registered_borrower}"
-            f"a été correctement supprimé de vos jeux empruntés",
+            f" a été correctement supprimé de vos jeux empruntés",
         )
     except IntegrityError as error:
         messages.add_message(

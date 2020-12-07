@@ -33,14 +33,26 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         {% if not request.user.is_anonymous %}
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "library:wanted" user.id%}">Liste d'Envies</a></li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "library:your-games" user.id %}">Vos Jeux</a></li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "library:lended" user.id%}">Prêts</a></li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "library:borrowed" %}">Emprunts</a></li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "accounts:friends" %}">Amis</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger">
+                                <form id="navbar-search-form" class="navbar-search-form" action="" method="post">
+                                    {% csrf_token %}
+                                    {{ navbar_form }}
+                                    {{ navbar_form.media }}
+                                    <button id="search-button">OK</button>
+                                </form>
+                            </a></li>
+                            <li class="nav-item dropdown">
+                               <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown" title="Jeux"><i class="fas fa-gamepad"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger text-black-50" href="{% url "library:games" %}">Vos Jeux</a></li>
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger text-black-50" href="{% url "library:wanted" %}">Liste d'Envies</a></li>
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger text-black-50" href="{% url "library:borrowed" %}">Emprunts</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "accounts:friends" %}" title="Amis"><i class="fas fa-users"></i></a></li>
                         {% endif %}
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url 'accounts:login' %}{% else %}{% url 'accounts:user_account'%}{% endif %}">{% if not request.user_agent.is_pc %}{% if request.user.is_anonymous %} Login{% else %} Votre Compte{% endif %}{% endif %}</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url "accounts:subscription" %}">Inscription{% else %}{% url "accounts:logout" %}">Déconnexion{% endif %}</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url 'accounts:login' %}"{% else %}{% url 'accounts:user_account'%}" title="Votre compte"{% endif %}>{% if not request.user_agent.is_pc %}{% if request.user.is_anonymous %} Login{% else %} <i class="fas fa-user-circle"></i>{% endif %}{% endif %}</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url "accounts:subscription" %}">Inscription{% else %}{% url "accounts:logout" %}" title="Déconnexion"><i class="fas fa-sign-out-alt"></i>{% endif %}</a></li>
                     </ul>
                 </div>
             </div>

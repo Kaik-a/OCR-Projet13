@@ -1,14 +1,19 @@
 """Views for accounts"""
-from typing import List, Union
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.views.generic import FormView, ListView
+
+from library.context_processors.navbar_search_decorator import navbar_search_decorator
 
 from .commands.commands import mail_password, mail_subscription, validate_subscription
 from .forms import (
@@ -237,6 +242,7 @@ def sign_out(request) -> HttpResponse:
 
 
 @login_required
+@navbar_search_decorator
 def user_account(request) -> HttpResponse:
     """
     View to get user accounts.
@@ -247,43 +253,70 @@ def user_account(request) -> HttpResponse:
     return render(request, "user_account.html")
 
 
-def friends(request) -> HttpResponse:
-    """
-    See user's friends.
+@method_decorator(navbar_search_decorator, name="dispatch")
+class FriendsView(ListView, FormView, LoginRequiredMixin):
+    """Load friends page"""
 
-    :param request: django's request
-    :rtype: HttpResponse
-    """
-    friends_: Union[List[Friends], Friends] = Friends.objects.filter(user=request.user)
+    model = Friends
+    template_name = "friends.html"
+    context_object_name = "friends"
+    paginate_by = 10
 
-    if request.method == "POST":
-        form: SearchFriendForm = SearchFriendForm(request.POST)
+    form_class = SearchFriendForm
+    success_url = "friends"
 
-        username = form.data.get("user")
-        if form.is_valid():
-            try:
-                friend_to_add: CustomUser = CustomUser.objects.get(username=username)
+    def get_form_kwargs(self):
+        """Add user to form's kwargs"""
+        kwargs = super().get_form_kwargs()
+        kwargs["user"] = self.request.user
+        return kwargs
 
-                relationship = Friends(user=request.user, friend=friend_to_add)
+    def form_valid(self, form):
+        """Action after form's validation"""
+        user = self.request.user
+        try:
+            friend_to_add: CustomUser = CustomUser.objects.get(id=form.data.get("user"))
 
-                relationship.save()
+            relationship = Friends(user=user, friend=friend_to_add)
 
-                messages.add_message(
-                    request, 25, f"L'utilisateur {username} a été ajouté à vos amis"
-                )
-            except ObjectDoesNotExist:
-                messages.add_message(
-                    request,
-                    40,
-                    f"Aucun utilisateur trouvé ayant pour nom d'utilisateur {username}",
-                )
-            except IntegrityError:
-                messages.add_message(request, 40, f"Vous êtes déjà ami avec {username}")
-            return redirect(reverse("accounts:friends"))
-    else:
-        form: SearchFriendForm = SearchFriendForm()
+            relationship.save()
 
-    return render(request, "friends.html", context={"form": form, "friends": friends_})
+            messages.add_message(
+                self.request,
+                25,
+                f"L'utilisateur {friend_to_add.username} a été ajouté à vos amis",
+            )
+        except ObjectDoesNotExist:
+            messages.add_message(
+                self.request,
+                40,
+                f"Aucun utilisateur trouvé ayant pour nom d'utilisateur {friend_to_add.username}",
+            )
+        except IntegrityError:
+            messages.add_message(
+                self.request, 40, f"Vous êtes déjà ami avec {friend_to_add.username}"
+            )
+
+        return super().form_valid(form)
+
+    def get_queryset(self):
+        """Get Friends in db"""
+        return self.model.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        """Construct context for template"""
+        context = super().get_context_data(**kwargs)
+        relations = self.get_queryset()
+        page = self.request.GET.get("page")
+        paginator = Paginator(relations, self.paginate_by)
+        try:
+            friends_ = paginator.page(page)
+        except PageNotAnInteger:
+            friends_ = paginator.page(1)
+        except EmptyPage:
+            friends_ = paginator.page(paginator.num_pages)
+        context["friends"] = friends_
+        return context
 
 
 def delete_friend(request, friend: CustomUser) -> HttpResponse:

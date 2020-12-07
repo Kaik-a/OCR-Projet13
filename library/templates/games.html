@@ -35,7 +35,7 @@
                                 <figcaption>{{ game.name }}</figcaption>
                             </a>
                             {% block save %}
-                                <form class="delete-form" action="{% url "library:lended" request.user.id %}" method="post">
+                                <form class="delete-form" action="{% url "library:lended" %}" method="post">
                                     {% csrf_token %}
                                     <button class="delete-button" type="submit">Prêter</button>
                                 </form>
@@ -58,7 +58,7 @@
                                         <figcaption>{{ game.name }}</figcaption>
                                     </a>
                                     {% block save2 %}
-                                        <form class="delete-form" action="{% url "library:lended" request.user.id %}" method="post">
+                                        <form class="delete-form" action="{% url "library:lended"  %}" method="post">
                                             {% csrf_token %}
                                             <button class="delete-button" type="submit">Prêter</button>
                                         </form>

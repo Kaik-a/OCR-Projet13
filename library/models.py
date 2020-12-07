@@ -97,14 +97,9 @@ class LendedGame(models.Model):
         """lended game's representation"""
         return f"{self.owned_game} borrowed by {self.borrower.username}"
 
-    class Meta:
-        """A game can't be borrowed twice"""
-
-        unique_together = ("owned_game", "returned")
-
 
 @receiver(pre_save, sender=LendedGame)
-def handle_return_date(sender, **kwargs):
+def handle_return_date(sender, **kwargs):  # pylint: disable=unused-argument
     """Actualize return date if returned"""
     if kwargs["instance"].returned:
         kwargs["instance"].return_date = datetime.now()

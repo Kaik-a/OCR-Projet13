@@ -1,6 +1,8 @@
 """Forms for accounts"""
 from django import forms
 
+from accounts.models import CustomUser
+
 
 class LoginForm(forms.Form):
     """Class to create form for user."""
@@ -56,4 +58,17 @@ class ChangePasswordForm(forms.Form):
 class SearchFriendForm(forms.Form):
     """Class to create form in order to look for a friend"""
 
-    user = forms.CharField(label="Nom d'utilisateur", max_length=100)
+    user = None
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop("user", None)
+
+        super().__init__(*args, **kwargs)
+        self.fields["user"] = forms.ModelChoiceField(
+            label="",
+            empty_label="",
+            queryset=CustomUser.objects.exclude(username=user).filter(
+                is_superuser=False,
+                is_active=True,
+            ),
+        )

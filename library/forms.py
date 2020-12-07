@@ -9,12 +9,12 @@ from library.models import OwnedGame, Platform
 class SearchGameForm(forms.Form):
     """Class to create form for user."""
 
-    game = forms.CharField(label="Nom du jeu")
+    game = forms.CharField(label="Jeu", required=False)
     platform = forms.ModelChoiceField(
-        label="Plateforme",
-        empty_label="",
+        label="",
         queryset=Platform.objects.order_by("name"),
         to_field_name="name",
+        required=False,
     )
 
 
