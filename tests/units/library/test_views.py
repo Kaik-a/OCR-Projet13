@@ -66,14 +66,6 @@ class TestViews(TestLibrary):
 
         self.assertEqual(response.status_code, 200)
 
-    def test_lended(self):
-        """Load lended"""
-        url = reverse("library:lended", kwargs={"user": self.user.id})
-
-        response = self.client.get(url)
-
-        self.assertEqual(response.status_code, 200)
-
     def test_results(self):
         """Load results"""
         url = reverse(
@@ -97,7 +89,7 @@ class TestViews(TestLibrary):
 
     def test_wanted(self):
         """Load wanted"""
-        url = reverse("library:wanted", kwargs={"user": self.user.id})
+        url = reverse("library:wanted")
 
         response = self.client.get(url)
 
@@ -105,7 +97,7 @@ class TestViews(TestLibrary):
 
     def test_your_games(self):
         """Load your_games"""
-        url = reverse("library:your-games", kwargs={"user": self.user.id})
+        url = reverse("library:games")
 
         response = self.client.get(url)
 
