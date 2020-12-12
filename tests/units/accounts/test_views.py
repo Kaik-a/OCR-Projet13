@@ -139,3 +139,11 @@ class TestViews(TestPattern):
             response.request["PATH_INFO"],
             "/accounts/validate/" + str(self.awaiting_data_2.guid),
         )
+
+    def test_friends(self):
+        """Load friends"""
+        url = reverse("accounts:friends")
+
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
