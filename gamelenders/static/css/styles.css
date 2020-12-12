@@ -10012,7 +10012,7 @@ hr.light {
 
 .game-img {
   max-width: 250px;
-  max-height: 200px;
+  max-height: 150px;
 }
 
 #mainNav {
@@ -10147,4 +10147,17 @@ header.masthead h1 {
 
 .text-white-75 {
   color: rgba(255, 255, 255, 0.75);
+}
+
+#search-friend-form {
+  width: 25%;
+}
+
+#id_platform {
+  height: 27px;
+  border-radius: 0.25rem;
+}
+
+#id_game {
+  border-radius: 0.25rem;
 }

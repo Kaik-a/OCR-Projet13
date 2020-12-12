@@ -1,7 +1,9 @@
 """Forms for accounts"""
+from typing import Dict
+
 from django import forms
 
-from accounts.models import CustomUser
+from accounts.models import CustomUser, Friends
 
 
 class LoginForm(forms.Form):
@@ -67,8 +69,12 @@ class SearchFriendForm(forms.Form):
         self.fields["user"] = forms.ModelChoiceField(
             label="",
             empty_label="",
-            queryset=CustomUser.objects.exclude(username=user).filter(
+            queryset=CustomUser.objects.exclude(username=user)
+            .filter(
                 is_superuser=False,
                 is_active=True,
-            ),
+            )
+            .exclude(user_friend__in=Friends.objects.filter(user=user)),
         )
+        form_id: Dict = {"id": "search-friend-form"}
+        self.fields["user"].widget.attrs.update(form_id)
