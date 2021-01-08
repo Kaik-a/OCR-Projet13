@@ -1,4 +1,5 @@
 """Send request to giantbomb API"""
+from json import JSONDecodeError
 from typing import List, Union
 
 import requests
@@ -30,7 +31,12 @@ def send_request(
         headers=headers,
     )
 
-    return request.json()["results"]
+    try:
+        results = request.json()["results"]
+    except JSONDecodeError:
+        return ["API unavailable"]
+
+    return results
 
 
 def get_platforms():

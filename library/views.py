@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import IntegrityError
+from django.db.models import ProtectedError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
@@ -81,6 +82,13 @@ def results(request, platform: str, query: str) -> HttpResponse:
     """
     game_list = find_games(query=query, query_platform=platform)
 
+    if game_list == ["API unavailable"]:
+        messages.add_message(
+            request,
+            40,
+            "L'API GiantBomb ne semble pas accessible, merci de réessayer plus tard",
+        )
+        return HttpResponseRedirect(request.environ["HTTP_REFERER"])
     return render(request, "results.html", {"games": game_list})
 
 
@@ -304,6 +312,14 @@ def delete_from_library(request, owned_game: OwnedGame) -> HttpResponseRedirect:
             25,
             f"Le jeu {owned_game.game.name} a été correctement supprimé de votre "
             f"bibliothèque",
+        )
+    except ProtectedError:
+        messages.add_message(
+            request,
+            40,
+            f"Le jeu {owned_game.game.name} "
+            f"est actuellement prêté, veuillez le marquer comme rendu avant de le "
+            f"supprimer",
         )
     except IntegrityError as error:
         messages.add_message(

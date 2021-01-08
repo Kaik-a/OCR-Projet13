@@ -19,7 +19,7 @@ def navbar_search_decorator(function):
                             "library:results",
                             kwargs={
                                 "platform": form.cleaned_data["platform"],
-                                "query": form.cleaned_data["game"],
+                                "query": form.cleaned_data["game"] or "*",
                             },
                         )
                     )

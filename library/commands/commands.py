@@ -68,6 +68,9 @@ def find_games(query: str, query_platform: str) -> List[Game]:
     """
     games_json = send_requests.send_request(query=query)
 
+    if games_json == ["API unavailable"]:
+        return games_json
+
     games = []
     for game in games_json:
         game_platform: Platform = get_platform(game, query_platform)

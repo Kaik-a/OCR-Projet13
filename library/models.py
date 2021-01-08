@@ -28,7 +28,7 @@ class Game(models.Model):
 
     id: uuid4 = models.UUIDField(default=uuid4, primary_key=True)
     name: str = models.CharField(max_length=100)
-    deck: str = models.CharField(max_length=5000)
+    deck: str = models.CharField(max_length=5000, null=True)
     image: str = models.CharField(max_length=1000)
     giantbomb_url: str = models.CharField(max_length=500)
     platform: str = models.ForeignKey(Platform, on_delete=models.CASCADE)
@@ -83,7 +83,7 @@ class LendedGame(models.Model):
     """lended games"""
 
     id: uuid4 = models.UUIDField(default=uuid4, primary_key=True)
-    owned_game: OwnedGame = models.ForeignKey(OwnedGame, on_delete=models.CASCADE)
+    owned_game: OwnedGame = models.ForeignKey(OwnedGame, on_delete=models.PROTECT)
     borrower: CustomUser = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, null=True
     )
