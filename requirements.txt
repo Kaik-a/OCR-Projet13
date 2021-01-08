@@ -1,6 +1,7 @@
 django
 gunicorn
 pre-commit
-psycopg2
+psycopg2-binary
 requests
 selenium
+sentry-sdk
