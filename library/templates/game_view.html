@@ -47,7 +47,7 @@
 {% if is_paginated %}
     {% include "_pagination.html" %}
 {% endif %}
-<button class="btn btn-warning" data-toggle="modal" data-target="#lendModal">Prêter un jeu</button>
+<button id="lend-a-game" class="btn btn-warning" data-toggle="modal" data-target="#lendModal">Prêter un jeu</button>
 
 {% include "lend.html" %}
 {% endblock %}

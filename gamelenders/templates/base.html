@@ -43,11 +43,11 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                               <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown" title="Jeux"><i class="fas fa-gamepad"></i></a>
+                               <a id="dropdown-list" class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown" title="Jeux"><i class="fas fa-gamepad"></i></a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link js-scroll-trigger text-black-50" href="{% url "library:games" %}">Vos Jeux</a></li>
-                                    <li class="nav-item"><a class="nav-link js-scroll-trigger text-black-50" href="{% url "library:wanted" %}">Liste d'Envies</a></li>
-                                    <li class="nav-item"><a class="nav-link js-scroll-trigger text-black-50" href="{% url "library:borrowed" %}">Emprunts</a></li>
+                                    <li class="nav-item"><a id="your-games-button" class="nav-link js-scroll-trigger text-black-50" href="{% url "library:games" %}">Vos Jeux</a></li>
+                                    <li class="nav-item"><a id="wanted-button" class="nav-link js-scroll-trigger text-black-50" href="{% url "library:wanted" %}">Liste d'Envies</a></li>
+                                    <li class="nav-item"><a id="borrowed-button" class="nav-link js-scroll-trigger text-black-50" href="{% url "library:borrowed" %}">Emprunts</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "accounts:friends" %}" title="Amis"><i class="fas fa-users"></i></a></li>

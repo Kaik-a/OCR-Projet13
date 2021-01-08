@@ -305,6 +305,12 @@ def delete_from_library(request, owned_game: OwnedGame) -> HttpResponseRedirect:
             user=request.user, game__id=owned_game
         )
 
+        try:
+            LendedGame.objects.get(owned_game=owned_game, returned=False)
+            raise ProtectedError
+        except ObjectDoesNotExist:
+            pass
+
         owned_game.delete()
 
         messages.add_message(

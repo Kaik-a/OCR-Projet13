@@ -83,7 +83,7 @@ class LendedGame(models.Model):
     """lended games"""
 
     id: uuid4 = models.UUIDField(default=uuid4, primary_key=True)
-    owned_game: OwnedGame = models.ForeignKey(OwnedGame, on_delete=models.PROTECT)
+    owned_game: OwnedGame = models.ForeignKey(OwnedGame, on_delete=models.CASCADE)
     borrower: CustomUser = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, null=True
     )
