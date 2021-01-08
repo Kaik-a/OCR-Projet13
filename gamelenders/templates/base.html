@@ -50,10 +50,10 @@
                                     <li class="nav-item"><a id="borrowed-button" class="nav-link js-scroll-trigger text-black-50" href="{% url "library:borrowed" %}">Emprunts</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "accounts:friends" %}" title="Amis"><i class="fas fa-users"></i></a></li>
+                            <li id="friends-button" class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "accounts:friends" %}" title="Amis"><i class="fas fa-users"></i></a></li>
                         {% endif %}
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url 'accounts:login' %}"{% else %}{% url 'accounts:user_account'%}" title="Votre compte"{% endif %}>{% if not request.user_agent.is_pc %}{% if request.user.is_anonymous %} Login{% else %} <i class="fas fa-user-circle"></i>{% endif %}{% endif %}</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url "accounts:subscription" %}">Inscription{% else %}{% url "accounts:logout" %}" title="Déconnexion"><i class="fas fa-sign-out-alt"></i>{% endif %}</a></li>
+                        <li id="navbar_account" class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url 'accounts:login' %}"{% else %}{% url 'accounts:user_account'%}" title="Votre compte"{% endif %}>{% if not request.user_agent.is_pc %}{% if request.user.is_anonymous %} Login{% else %} <i class="fas fa-user-circle"></i>{% endif %}{% endif %}</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url "accounts:subscription" %}" id="subscription">Inscription{% else %}{% url "accounts:logout" %}" title="Déconnexion" id="logout"><i class="fas fa-sign-out-alt"></i>{% endif %}</a></li>
                     </ul>
                 </div>
             </div>
