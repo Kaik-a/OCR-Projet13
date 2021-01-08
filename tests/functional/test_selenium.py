@@ -1,4 +1,5 @@
 """Selenium based tests template"""
+import subprocess
 from datetime import datetime
 
 from django.test import LiveServerTestCase
@@ -20,7 +21,10 @@ class SeleniumBasedTestCase(LiveServerTestCase):
         self.caps = DesiredCapabilities().FIREFOX.copy()
         self.caps["marionette"] = True
         self.binary = (
-            "/Applications/Applications/Firefox.app/Contents/MacOS/firefox-bin"
+            subprocess.run(
+                ["which", "firefox"], stdout=subprocess.PIPE, check=False
+            ).stdout.decode("utf8")[:-1]
+            or "/Applications/Applications/Firefox.app/Contents/MacOS/firefox-bin"  # noqa: W503
         )
 
         self.user = CustomUser.objects.create_user(

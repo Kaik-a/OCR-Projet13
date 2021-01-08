@@ -307,7 +307,7 @@ def delete_from_library(request, owned_game: OwnedGame) -> HttpResponseRedirect:
 
         try:
             LendedGame.objects.get(owned_game=owned_game, returned=False)
-            raise ProtectedError
+            raise ProtectedError("Game is lended", LendedGame)
         except ObjectDoesNotExist:
             pass
 
