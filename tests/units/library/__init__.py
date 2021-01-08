@@ -1,4 +1,5 @@
 """Game result"""
+# pylint: disable=line-too-long,too-many-lines
 GAME = {
     "aliases": "FFVII\r\n"
     "FF VII\r\n"

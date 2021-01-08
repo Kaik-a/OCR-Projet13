@@ -21,6 +21,7 @@ class TestSendRequest(TestCase):
         except AttributeError:
             return
 
+    # pylint: disable=unused-argument
     def get_headers(self, *args, **kwargs) -> requests.Response:
         """Get headers from request"""
         modified_dict = requests.Response()

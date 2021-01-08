@@ -11,6 +11,7 @@ from library import models
 from library.models import LendedGame, OwnedGame, WantedGame
 
 
+# pylint: disable=too-many-instance-attributes
 class SeleniumBasedTestCase(LiveServerTestCase):
     """Test based on Selenium."""
 

@@ -44,6 +44,7 @@ class TestCommand(TestLibrary):
     def test_find_games(self):
         """Test find_games method"""
 
+        # pylint: disable=unused-argument
         def patch_request(**kwargs):
             """Don't send data to requests"""
             return [GAME]
