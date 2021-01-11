@@ -88,7 +88,7 @@ DATABASES = {
         "NAME": "ocrprojet13",
         "USER": "ocrprojet13user",
         "PASSWORD": os.environ["P13_SQL_PASSWORD"],
-        "HOST": "localhost",
+        "HOST": os.environ["HOST"],
         "PORT": "",
     },
 }
