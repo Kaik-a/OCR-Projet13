@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Scrapping &#8212; Documentation Projet 13 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Scripts" href="scripts.html" />
+    <link rel="prev" title="gamelenders" href="gamelenders.html" />
+
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+
+
+          <div class="body" role="main">
+
+  <div class="section" id="module-scrapping.construct_requests">
+<span id="scrapping"></span><h1>Scrapping<a class="headerlink" href="#module-scrapping.construct_requests" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Construct request for giantbomb API</p>
+<dl class="function">
+<dt id="scrapping.construct_requests.add_data_format">
+<code class="sig-prename descclassname">scrapping.construct_requests.</code><code class="sig-name descname">add_data_format</code><span class="sig-paren">(</span><em class="sig-param">data_format: str</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#scrapping.construct_requests.add_data_format" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Add format to request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>data_format</strong> (<em>str</em>) – format of data returned by the API</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="scrapping.construct_requests.add_query">
+<code class="sig-prename descclassname">scrapping.construct_requests.</code><code class="sig-name descname">add_query</code><span class="sig-paren">(</span><em class="sig-param">query: str</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#scrapping.construct_requests.add_query" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Add query to request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>query</strong> (<em>str</em>) – query to look for</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="scrapping.construct_requests.add_resources">
+<code class="sig-prename descclassname">scrapping.construct_requests.</code><code class="sig-name descname">add_resources</code><span class="sig-paren">(</span><em class="sig-param">resources: Union[List[str], str]</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#scrapping.construct_requests.add_resources" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Add types of resources to request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>List</strong><strong>[</strong><strong>str</strong><strong>] </strong><strong>resources</strong> (<em>str</em><em>,</em>) – type of resources searched</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="scrapping.construct_requests.construct_platform_request">
+<code class="sig-prename descclassname">scrapping.construct_requests.</code><code class="sig-name descname">construct_platform_request</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#scrapping.construct_requests.construct_platform_request" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Construct platform request to populate the DB</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="scrapping.construct_requests.construct_request">
+<code class="sig-prename descclassname">scrapping.construct_requests.</code><code class="sig-name descname">construct_request</code><span class="sig-paren">(</span><em class="sig-param">*, query: str, data_format: str = 'json', resources: Union[List[str], str] = None</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#scrapping.construct_requests.construct_request" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Construct request to search through giantbomb api.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – query to look for</p></li>
+<li><p><strong>data_format</strong> (<em>str</em>) – format of data returned by the API</p></li>
+<li><p><strong>List</strong><strong>[</strong><strong>str</strong><strong>] </strong><strong>resources</strong> (<em>str</em><em>,</em>) – type of resources searched</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-scrapping.send_requests"></span><p>Send request to giantbomb API</p>
+<dl class="function">
+<dt id="scrapping.send_requests.get_platforms">
+<code class="sig-prename descclassname">scrapping.send_requests.</code><code class="sig-name descname">get_platforms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scrapping.send_requests.get_platforms" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Get platforms from GiantBomb</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="scrapping.send_requests.send_request">
+<code class="sig-prename descclassname">scrapping.send_requests.</code><code class="sig-name descname">send_request</code><span class="sig-paren">(</span><em class="sig-param">*, query: str, data_format: str = 'json', resources: Union[List[str], str] = None</em><span class="sig-paren">)</span> &#x2192; List<a class="headerlink" href="#scrapping.send_requests.send_request" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Send request to giantbomb API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – query to look for</p></li>
+<li><p><strong>data_format</strong> (<em>str</em>) – format of data returned by the API</p></li>
+<li><p><strong>resources</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – type of resources searched</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Projet 13</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Requirements:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Accounts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Library</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library.html">Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Main</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gamelenders.html">gamelenders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Scrapping</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Scrapping</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="gamelenders.html" title="Chapitre précédent">gamelenders</a></li>
+      <li>Next: <a href="scripts.html" title="Chapitre suivant">Scripts</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, BICHARI Mehdi.
+
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+
+      |
+      <a href="_sources/scrapping.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+
+
+
+  </body>
+</html>

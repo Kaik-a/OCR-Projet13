@@ -1,0 +1,497 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Library &#8212; Documentation Projet 13 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="gamelenders" href="gamelenders.html" />
+    <link rel="prev" title="Accounts" href="accounts.html" />
+
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+
+
+          <div class="body" role="main">
+
+  <div class="section" id="module-library.models">
+<span id="library"></span><h1>Library<a class="headerlink" href="#module-library.models" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Library’s classes</p>
+<dl class="class">
+<dt id="library.models.Game">
+<em class="property">class </em><code class="sig-prename descclassname">library.models.</code><code class="sig-name descname">Game</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#library.models.Game" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Games</p>
+<dl class="exception">
+<dt id="library.models.Game.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#library.models.Game.DoesNotExist" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="library.models.Game.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#library.models.Game.MultipleObjectsReturned" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="library.models.LendedGame">
+<em class="property">class </em><code class="sig-prename descclassname">library.models.</code><code class="sig-name descname">LendedGame</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#library.models.LendedGame" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>lended games</p>
+<dl class="exception">
+<dt id="library.models.LendedGame.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#library.models.LendedGame.DoesNotExist" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="library.models.LendedGame.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#library.models.LendedGame.MultipleObjectsReturned" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="library.models.OwnedGame">
+<em class="property">class </em><code class="sig-prename descclassname">library.models.</code><code class="sig-name descname">OwnedGame</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#library.models.OwnedGame" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Games owned by user</p>
+<dl class="exception">
+<dt id="library.models.OwnedGame.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#library.models.OwnedGame.DoesNotExist" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="library.models.OwnedGame.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#library.models.OwnedGame.MultipleObjectsReturned" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="library.models.Platform">
+<em class="property">class </em><code class="sig-prename descclassname">library.models.</code><code class="sig-name descname">Platform</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#library.models.Platform" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Platforms for games</p>
+<dl class="exception">
+<dt id="library.models.Platform.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#library.models.Platform.DoesNotExist" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="library.models.Platform.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#library.models.Platform.MultipleObjectsReturned" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="library.models.WantedGame">
+<em class="property">class </em><code class="sig-prename descclassname">library.models.</code><code class="sig-name descname">WantedGame</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#library.models.WantedGame" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Wanted games</p>
+<dl class="exception">
+<dt id="library.models.WantedGame.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#library.models.WantedGame.DoesNotExist" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="library.models.WantedGame.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#library.models.WantedGame.MultipleObjectsReturned" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="library.models.handle_return_date">
+<code class="sig-prename descclassname">library.models.</code><code class="sig-name descname">handle_return_date</code><span class="sig-paren">(</span><em class="sig-param">sender</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#library.models.handle_return_date" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Actualize return date if returned</p>
+</dd></dl>
+
+<span class="target" id="module-library.urls"></span><p>Urls for accounts</p>
+<span class="target" id="module-library.views"></span><p>Views for library</p>
+<dl class="class">
+<dt id="library.views.BorrowedView">
+<em class="property">class </em><code class="sig-prename descclassname">library.views.</code><code class="sig-name descname">BorrowedView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#library.views.BorrowedView" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Load borrowed games</p>
+<dl class="method">
+<dt id="library.views.BorrowedView.get_context_data">
+<code class="sig-name descname">get_context_data</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#library.views.BorrowedView.get_context_data" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Construct context</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="library.views.BorrowedView.get_queryset">
+<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#library.views.BorrowedView.get_queryset" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Get borrowed games</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="library.views.BorrowedView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#library.views.BorrowedView.model" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#library.models.LendedGame" title="library.models.LendedGame"><code class="xref py py-class docutils literal notranslate"><span class="pre">library.models.LendedGame</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="library.views.GameListView">
+<em class="property">class </em><code class="sig-prename descclassname">library.views.</code><code class="sig-name descname">GameListView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#library.views.GameListView" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Load owned games</p>
+<dl class="attribute">
+<dt id="library.views.GameListView.form_class">
+<code class="sig-name descname">form_class</code><a class="headerlink" href="#library.views.GameListView.form_class" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#library.forms.LendGameForm" title="library.forms.LendGameForm"><code class="xref py py-class docutils literal notranslate"><span class="pre">library.forms.LendGameForm</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="library.views.GameListView.form_valid">
+<code class="sig-name descname">form_valid</code><span class="sig-paren">(</span><em class="sig-param">form</em><span class="sig-paren">)</span><a class="headerlink" href="#library.views.GameListView.form_valid" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Action if form is valid</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="library.views.GameListView.get_context_data">
+<code class="sig-name descname">get_context_data</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#library.views.GameListView.get_context_data" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Construct context</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="library.views.GameListView.get_form_kwargs">
+<code class="sig-name descname">get_form_kwargs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#library.views.GameListView.get_form_kwargs" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Get user in form</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="library.views.GameListView.get_queryset">
+<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#library.views.GameListView.get_queryset" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Get owned games</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="library.views.GameListView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#library.views.GameListView.model" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#library.models.OwnedGame" title="library.models.OwnedGame"><code class="xref py py-class docutils literal notranslate"><span class="pre">library.models.OwnedGame</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="library.views.WantedView">
+<em class="property">class </em><code class="sig-prename descclassname">library.views.</code><code class="sig-name descname">WantedView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#library.views.WantedView" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Load wanted games</p>
+<dl class="method">
+<dt id="library.views.WantedView.get_context_data">
+<code class="sig-name descname">get_context_data</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#library.views.WantedView.get_context_data" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Construct context</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="library.views.WantedView.get_queryset">
+<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#library.views.WantedView.get_queryset" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Get wanted games</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="library.views.WantedView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#library.views.WantedView.model" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#library.models.WantedGame" title="library.models.WantedGame"><code class="xref py py-class docutils literal notranslate"><span class="pre">library.models.WantedGame</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="library.views.add_to_library">
+<code class="sig-prename descclassname">library.views.</code><code class="sig-name descname">add_to_library</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">game_: str</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponseRedirect<a class="headerlink" href="#library.views.add_to_library" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Add a game to user’s library.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – django’s request</p></li>
+<li><p><strong>game</strong> – game to add to library</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>HttpResponseRedirect</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="library.views.add_wish">
+<code class="sig-prename descclassname">library.views.</code><code class="sig-name descname">add_wish</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">game_: str</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponseRedirect<a class="headerlink" href="#library.views.add_wish" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Add a game to user’s wish list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – django’s request</p></li>
+<li><p><strong>game</strong> – game to add to wish list</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>HttpResponseRedirect</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="library.views.delete_from_library">
+<code class="sig-prename descclassname">library.views.</code><code class="sig-name descname">delete_from_library</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">owned_game: library.models.OwnedGame</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponseRedirect<a class="headerlink" href="#library.views.delete_from_library" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Delete a game from user’s library.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – django’s request</p></li>
+<li><p><strong>owned_game</strong> – game to delete from the library</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>HttpResponseRedirect</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="library.views.delete_wish">
+<code class="sig-prename descclassname">library.views.</code><code class="sig-name descname">delete_wish</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">wanted_game: library.models.WantedGame</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponseRedirect<a class="headerlink" href="#library.views.delete_wish" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Delete a game which was in wish list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – django’s request</p></li>
+<li><p><strong>wanted_game</strong> – game to delete from wish list</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>HttpResponseRedirect</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="library.views.unmark_lended">
+<code class="sig-prename descclassname">library.views.</code><code class="sig-name descname">unmark_lended</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">lended_game: library.models.LendedGame</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponseRedirect<a class="headerlink" href="#library.views.unmark_lended" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Unmark a game which has been lended.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – django’s request</p></li>
+<li><p><strong>lended_game</strong> – game lended</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>HttpResponseRedirect</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-library.forms"></span><p>Forms for library</p>
+<dl class="class">
+<dt id="library.forms.LendGameForm">
+<em class="property">class </em><code class="sig-prename descclassname">library.forms.</code><code class="sig-name descname">LendGameForm</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#library.forms.LendGameForm" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>class to create lending game form</p>
+<dl class="method">
+<dt id="library.forms.LendGameForm.clean">
+<code class="sig-name descname">clean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#library.forms.LendGameForm.clean" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Make sure either borrower or unknown_borrower are filled</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="library.forms.SearchGameForm">
+<em class="property">class </em><code class="sig-prename descclassname">library.forms.</code><code class="sig-name descname">SearchGameForm</code><span class="sig-paren">(</span><em class="sig-param">data=None</em>, <em class="sig-param">files=None</em>, <em class="sig-param">auto_id='id_%s'</em>, <em class="sig-param">prefix=None</em>, <em class="sig-param">initial=None</em>, <em class="sig-param">error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em class="sig-param">label_suffix=None</em>, <em class="sig-param">empty_permitted=False</em>, <em class="sig-param">field_order=None</em>, <em class="sig-param">use_required_attribute=None</em>, <em class="sig-param">renderer=None</em><span class="sig-paren">)</span><a class="headerlink" href="#library.forms.SearchGameForm" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Class to create form for user.</p>
+</dd></dl>
+
+<span class="target" id="module-library.commands.commands"></span><p>Library’s commands</p>
+<dl class="function">
+<dt id="library.commands.commands.find_games">
+<code class="sig-prename descclassname">library.commands.commands.</code><code class="sig-name descname">find_games</code><span class="sig-paren">(</span><em class="sig-param">query: str</em>, <em class="sig-param">query_platform: str</em><span class="sig-paren">)</span> &#x2192; List[library.models.Game]<a class="headerlink" href="#library.commands.commands.find_games" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Find games based on platform.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> – name of the game</p></li>
+<li><p><strong>query_platform</strong> – game’s platfomr</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="#library.models.Game" title="library.models.Game">Game</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="library.commands.commands.get_platform">
+<code class="sig-prename descclassname">library.commands.commands.</code><code class="sig-name descname">get_platform</code><span class="sig-paren">(</span><em class="sig-param">game: Dict</em>, <em class="sig-param">query_platform: str</em><span class="sig-paren">)</span> &#x2192; Optional[library.models.Platform]<a class="headerlink" href="#library.commands.commands.get_platform" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Get platform for a given game.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>game</strong> – Dict representation of a game</p></li>
+<li><p><strong>query_platform</strong> – game’s platform</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="library.commands.commands.get_release_date">
+<code class="sig-prename descclassname">library.commands.commands.</code><code class="sig-name descname">get_release_date</code><span class="sig-paren">(</span><em class="sig-param">game: Dict</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#library.commands.commands.get_release_date" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Get release date for game if exists
+:param game: game’s representation
+:return: release_date</p>
+</dd></dl>
+
+<span class="target" id="module-library.context_processors.navbar_search"></span><p>Pass navbar to context_processors</p>
+<dl class="function">
+<dt id="library.context_processors.navbar_search.navbar_search">
+<code class="sig-prename descclassname">library.context_processors.navbar_search.</code><code class="sig-name descname">navbar_search</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span><a class="headerlink" href="#library.context_processors.navbar_search.navbar_search" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Pass toolbar to all views</p>
+</dd></dl>
+
+<span class="target" id="module-library.context_processors.navbar_search_decorator"></span><p>Decorator to handle navbar_search</p>
+<dl class="function">
+<dt id="library.context_processors.navbar_search_decorator.navbar_search_decorator">
+<code class="sig-prename descclassname">library.context_processors.navbar_search_decorator.</code><code class="sig-name descname">navbar_search_decorator</code><span class="sig-paren">(</span><em class="sig-param">function</em><span class="sig-paren">)</span><a class="headerlink" href="#library.context_processors.navbar_search_decorator.navbar_search_decorator" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Decorator to add navbar_search form by decorator</p>
+</dd></dl>
+
+<span class="target" id="module-library.management.commands.populate_platforms"></span><p>Populate platform</p>
+<dl class="class">
+<dt id="library.management.commands.populate_platforms.Command">
+<em class="property">class </em><code class="sig-prename descclassname">library.management.commands.populate_platforms.</code><code class="sig-name descname">Command</code><span class="sig-paren">(</span><em class="sig-param">stdout=None</em>, <em class="sig-param">stderr=None</em>, <em class="sig-param">no_color=False</em>, <em class="sig-param">force_color=False</em><span class="sig-paren">)</span><a class="headerlink" href="#library.management.commands.populate_platforms.Command" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Populate platforms command</p>
+<dl class="method">
+<dt id="library.management.commands.populate_platforms.Command.handle">
+<code class="sig-name descname">handle</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**options</em><span class="sig-paren">)</span><a class="headerlink" href="#library.management.commands.populate_platforms.Command.handle" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Handle command</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-library.templatetags.get_lended"></span><p>Get lended games</p>
+<dl class="function">
+<dt id="library.templatetags.get_lended.get_lended">
+<code class="sig-prename descclassname">library.templatetags.get_lended.</code><code class="sig-name descname">get_lended</code><span class="sig-paren">(</span><em class="sig-param">owned_game_id</em><span class="sig-paren">)</span> &#x2192; Union[library.models.LendedGame, bool]<a class="headerlink" href="#library.templatetags.get_lended.get_lended" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Get lended games.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>owned_game_id</strong> – id of game owned</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>Union[<a class="reference internal" href="#library.models.LendedGame" title="library.models.LendedGame">LendedGame</a>, bool]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Projet 13</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Requirements:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Accounts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Library</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Main</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gamelenders.html">gamelenders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Scrapping</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scrapping.html">Scrapping</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="accounts.html" title="Chapitre précédent">Accounts</a></li>
+      <li>Next: <a href="gamelenders.html" title="Chapitre suivant">gamelenders</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, BICHARI Mehdi.
+
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+
+      |
+      <a href="_sources/library.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+
+
+
+  </body>
+</html>

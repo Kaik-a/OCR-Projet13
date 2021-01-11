@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Accounts &#8212; Documentation Projet 13 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Library" href="library.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+
+
+          <div class="body" role="main">
+
+  <div class="section" id="module-accounts.models">
+<span id="accounts"></span><h1>Accounts<a class="headerlink" href="#module-accounts.models" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Models for accounts</p>
+<dl class="class">
+<dt id="accounts.models.AwaitingData">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.models.</code><code class="sig-name descname">AwaitingData</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.models.AwaitingData" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>class to store data awaiting validation</p>
+<dl class="exception">
+<dt id="accounts.models.AwaitingData.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#accounts.models.AwaitingData.DoesNotExist" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="accounts.models.AwaitingData.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#accounts.models.AwaitingData.MultipleObjectsReturned" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="accounts.models.CustomUser">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.models.</code><code class="sig-name descname">CustomUser</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.models.CustomUser" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Make user’s email unique</p>
+<dl class="exception">
+<dt id="accounts.models.CustomUser.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#accounts.models.CustomUser.DoesNotExist" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="accounts.models.CustomUser.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#accounts.models.CustomUser.MultipleObjectsReturned" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="accounts.models.Friends">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.models.</code><code class="sig-name descname">Friends</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.models.Friends" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>class to make link between friends</p>
+<dl class="exception">
+<dt id="accounts.models.Friends.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#accounts.models.Friends.DoesNotExist" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="accounts.models.Friends.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#accounts.models.Friends.MultipleObjectsReturned" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-accounts.urls"></span><p>Urls for accounts</p>
+<span class="target" id="module-accounts.views"></span><p>Views for accounts</p>
+<dl class="class">
+<dt id="accounts.views.FriendsView">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">FriendsView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.FriendsView" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Load friends page</p>
+<dl class="attribute">
+<dt id="accounts.views.FriendsView.form_class">
+<code class="sig-name descname">form_class</code><a class="headerlink" href="#accounts.views.FriendsView.form_class" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#accounts.forms.SearchFriendForm" title="accounts.forms.SearchFriendForm"><code class="xref py py-class docutils literal notranslate"><span class="pre">accounts.forms.SearchFriendForm</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="accounts.views.FriendsView.form_valid">
+<code class="sig-name descname">form_valid</code><span class="sig-paren">(</span><em class="sig-param">form</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.FriendsView.form_valid" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Action after form’s validation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="accounts.views.FriendsView.get_context_data">
+<code class="sig-name descname">get_context_data</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.FriendsView.get_context_data" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Construct context for template</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="accounts.views.FriendsView.get_form_kwargs">
+<code class="sig-name descname">get_form_kwargs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.FriendsView.get_form_kwargs" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Add user to form’s kwargs</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="accounts.views.FriendsView.get_queryset">
+<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.FriendsView.get_queryset" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Get Friends in db</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="accounts.views.FriendsView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#accounts.views.FriendsView.model" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>alias de <a class="reference internal" href="#accounts.models.Friends" title="accounts.models.Friends"><code class="xref py py-class docutils literal notranslate"><span class="pre">accounts.models.Friends</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="accounts.views.check_mail">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">check_mail</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponse<a class="headerlink" href="#accounts.views.check_mail" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Check if mail is integration database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>request</strong> – django’s request</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>HttpResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="accounts.views.delete_friend">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">delete_friend</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">friend: accounts.models.CustomUser</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponse<a class="headerlink" href="#accounts.views.delete_friend" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Delete a friend from friend’s list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – django’s request</p></li>
+<li><p><strong>friend</strong> – friend to delete</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>HttpResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="accounts.views.get_user_info">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">get_user_info</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponse<a class="headerlink" href="#accounts.views.get_user_info" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>View to send login data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>request</strong> – django request</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>HttpResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="accounts.views.login_user">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">login_user</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">form: accounts.forms.LoginForm</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponse<a class="headerlink" href="#accounts.views.login_user" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Verify login.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – django request</p></li>
+<li><p><strong>form</strong> (<a class="reference internal" href="#accounts.forms.LoginForm" title="accounts.forms.LoginForm"><em>LoginForm</em></a>) – form to retrieve login data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>HttpResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="accounts.views.reset_password">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">reset_password</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">user: str</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponse<a class="headerlink" href="#accounts.views.reset_password" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Reset user’s password.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – django’s request</p></li>
+<li><p><strong>user</strong> (<em>str</em>) – user to change password</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>HttpResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="accounts.views.send_reset">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">send_reset</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">user: str</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponse<a class="headerlink" href="#accounts.views.send_reset" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Send email to user to change password.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – django’s request</p></li>
+<li><p><strong>user</strong> (<em>str</em>) – user to change password</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="accounts.views.sign_out">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">sign_out</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponse<a class="headerlink" href="#accounts.views.sign_out" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>View to log out.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>request</strong> – django request</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>HttpResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="accounts.views.subscribe">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">subscribe</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponse<a class="headerlink" href="#accounts.views.subscribe" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>View to subscribe for a new user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>request</strong> – django request</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>HttpResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="accounts.views.validate">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">guid: str</em><span class="sig-paren">)</span> &#x2192; django.http.response.HttpResponse<a class="headerlink" href="#accounts.views.validate" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Validate data through a link received by mail.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – django’s request</p></li>
+<li><p><strong>guid</strong> – Guid to identify request sent</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>HttpResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-accounts.forms"></span><p>Forms for accounts</p>
+<dl class="class">
+<dt id="accounts.forms.ChangePasswordForm">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.forms.</code><code class="sig-name descname">ChangePasswordForm</code><span class="sig-paren">(</span><em class="sig-param">data=None</em>, <em class="sig-param">files=None</em>, <em class="sig-param">auto_id='id_%s'</em>, <em class="sig-param">prefix=None</em>, <em class="sig-param">initial=None</em>, <em class="sig-param">error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em class="sig-param">label_suffix=None</em>, <em class="sig-param">empty_permitted=False</em>, <em class="sig-param">field_order=None</em>, <em class="sig-param">use_required_attribute=None</em>, <em class="sig-param">renderer=None</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.forms.ChangePasswordForm" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Class to create form integration order to change password</p>
+<dl class="method">
+<dt id="accounts.forms.ChangePasswordForm.clean">
+<code class="sig-name descname">clean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#accounts.forms.ChangePasswordForm.clean" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Get cleaned data</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="accounts.forms.CheckMailForm">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.forms.</code><code class="sig-name descname">CheckMailForm</code><span class="sig-paren">(</span><em class="sig-param">data=None</em>, <em class="sig-param">files=None</em>, <em class="sig-param">auto_id='id_%s'</em>, <em class="sig-param">prefix=None</em>, <em class="sig-param">initial=None</em>, <em class="sig-param">error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em class="sig-param">label_suffix=None</em>, <em class="sig-param">empty_permitted=False</em>, <em class="sig-param">field_order=None</em>, <em class="sig-param">use_required_attribute=None</em>, <em class="sig-param">renderer=None</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.forms.CheckMailForm" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Class to create form to check is email integration db</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="accounts.forms.LoginForm">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.forms.</code><code class="sig-name descname">LoginForm</code><span class="sig-paren">(</span><em class="sig-param">data=None</em>, <em class="sig-param">files=None</em>, <em class="sig-param">auto_id='id_%s'</em>, <em class="sig-param">prefix=None</em>, <em class="sig-param">initial=None</em>, <em class="sig-param">error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em class="sig-param">label_suffix=None</em>, <em class="sig-param">empty_permitted=False</em>, <em class="sig-param">field_order=None</em>, <em class="sig-param">use_required_attribute=None</em>, <em class="sig-param">renderer=None</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.forms.LoginForm" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Class to create form for user.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="accounts.forms.SearchFriendForm">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.forms.</code><code class="sig-name descname">SearchFriendForm</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.forms.SearchFriendForm" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Class to create form in order to look for a friend</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="accounts.forms.SubscribeForm">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.forms.</code><code class="sig-name descname">SubscribeForm</code><span class="sig-paren">(</span><em class="sig-param">data=None</em>, <em class="sig-param">files=None</em>, <em class="sig-param">auto_id='id_%s'</em>, <em class="sig-param">prefix=None</em>, <em class="sig-param">initial=None</em>, <em class="sig-param">error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em class="sig-param">label_suffix=None</em>, <em class="sig-param">empty_permitted=False</em>, <em class="sig-param">field_order=None</em>, <em class="sig-param">use_required_attribute=None</em>, <em class="sig-param">renderer=None</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.forms.SubscribeForm" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Class to create form for creating user.</p>
+<dl class="method">
+<dt id="accounts.forms.SubscribeForm.clean">
+<code class="sig-name descname">clean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#accounts.forms.SubscribeForm.clean" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Get cleaned data</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-accounts.commands.commands"></span><p>Commands for accounts</p>
+<dl class="function">
+<dt id="accounts.commands.commands.mail_password">
+<code class="sig-prename descclassname">accounts.commands.commands.</code><code class="sig-name descname">mail_password</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">user: str</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.commands.commands.mail_password" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Send mail to reset password.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>user</strong> (<em>str</em>) – user to reset password</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="accounts.commands.commands.mail_subscription">
+<code class="sig-prename descclassname">accounts.commands.commands.</code><code class="sig-name descname">mail_subscription</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">data: Dict</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#accounts.commands.commands.mail_subscription" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Send mail for subscription.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – django’s request</p></li>
+<li><p><strong>data</strong> (<em>Dict</em>) – data sent integration subscription</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="accounts.commands.commands.validate_subscription">
+<code class="sig-prename descclassname">accounts.commands.commands.</code><code class="sig-name descname">validate_subscription</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">guid: str</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#accounts.commands.commands.validate_subscription" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Create account after validation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – django’s request</p></li>
+<li><p><strong>guid</strong> – Subscription guid</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-accounts.management.commands.purge_awaiting_data"></span><p>Purge data above 24h</p>
+<dl class="class">
+<dt id="accounts.management.commands.purge_awaiting_data.Command">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.management.commands.purge_awaiting_data.</code><code class="sig-name descname">Command</code><span class="sig-paren">(</span><em class="sig-param">stdout=None</em>, <em class="sig-param">stderr=None</em>, <em class="sig-param">no_color=False</em>, <em class="sig-param">force_color=False</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.management.commands.purge_awaiting_data.Command" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Purge command</p>
+<dl class="method">
+<dt id="accounts.management.commands.purge_awaiting_data.Command.handle">
+<code class="sig-name descname">handle</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**options</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.management.commands.purge_awaiting_data.Command.handle" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Handle command</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Projet 13</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Requirements:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Accounts</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Accounts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Library</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library.html">Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Main</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gamelenders.html">gamelenders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Scrapping</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scrapping.html">Scrapping</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="Chapitre précédent">Installation</a></li>
+      <li>Next: <a href="library.html" title="Chapitre suivant">Library</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, BICHARI Mehdi.
+
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+
+      |
+      <a href="_sources/accounts.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load get_lended %}
+
+{% block title %}Vos jeux{% endblock title %}
+
+{% block masthead %}
+<div class="text-center">
+    <h1 class="text-uppercase text-white font-weight-bold">{% block pagetitle %}Vos jeux{% endblock pagetitle %}</h1>
+    <hr class="divider my-4" />
+</div>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Plateforme</th>
+            <th scope="col">Prêt</th>
+            <th scope="col">Prêté Depuis</th>
+            <th scope="col">Supprimer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for owned_game in owned_games %}
+        <tr>
+            <td><a href="{% url "library:game" owned_game.game.id %}">{{ owned_game.game.name }}</a></td>
+            <td>{{ owned_game.game.platform }}</td>
+            <td>
+            {% if owned_game|get_lended %}
+                    <div>
+                {% with owned_game|get_lended as lended_game %}
+                    {% if lended_game.borrower %}{{ lended_game.borrower.username }}{% else %}{{ lended_game.not_registered_borrower }}{% endif %}
+                        <a href="{% url "library:unmark-lended" lended_game.id %}">Rendu</a>
+                    </div>
+            </td>
+            <td>{{ lended_game.lended_date }}</td>
+                {% endwith %}
+            {% else %}
+            </td>
+                <td></td>
+            {% endif %}
+            <td><a href="{% url "library:delete-from-library" owned_game.game.id%}"><button class="btn btn-danger"><i class="fas fa-trash"></i></button></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if is_paginated %}
+    {% include "_pagination.html" %}
+{% endif %}
+<button id="lend-a-game" class="btn btn-warning" data-toggle="modal" data-target="#lendModal">Prêter un jeu</button>
+
+{% include "lend.html" %}
+{% endblock %}

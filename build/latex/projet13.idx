@@ -1,0 +1,112 @@
+\indexentry{accounts.models (module)@\spxentry{accounts.models}\spxextra{module}|hyperpage}{3}
+\indexentry{AwaitingData (classe dans accounts.models)@\spxentry{AwaitingData}\spxextra{classe dans accounts.models}|hyperpage}{3}
+\indexentry{AwaitingData.DoesNotExist@\spxentry{AwaitingData.DoesNotExist}|hyperpage}{3}
+\indexentry{AwaitingData.MultipleObjectsReturned@\spxentry{AwaitingData.MultipleObjectsReturned}|hyperpage}{3}
+\indexentry{CustomUser (classe dans accounts.models)@\spxentry{CustomUser}\spxextra{classe dans accounts.models}|hyperpage}{3}
+\indexentry{CustomUser.DoesNotExist@\spxentry{CustomUser.DoesNotExist}|hyperpage}{3}
+\indexentry{CustomUser.MultipleObjectsReturned@\spxentry{CustomUser.MultipleObjectsReturned}|hyperpage}{3}
+\indexentry{Friends (classe dans accounts.models)@\spxentry{Friends}\spxextra{classe dans accounts.models}|hyperpage}{3}
+\indexentry{Friends.DoesNotExist@\spxentry{Friends.DoesNotExist}|hyperpage}{3}
+\indexentry{Friends.MultipleObjectsReturned@\spxentry{Friends.MultipleObjectsReturned}|hyperpage}{3}
+\indexentry{accounts.urls (module)@\spxentry{accounts.urls}\spxextra{module}|hyperpage}{3}
+\indexentry{accounts.views (module)@\spxentry{accounts.views}\spxextra{module}|hyperpage}{3}
+\indexentry{FriendsView (classe dans accounts.views)@\spxentry{FriendsView}\spxextra{classe dans accounts.views}|hyperpage}{3}
+\indexentry{form\_class (attribut accounts.views.FriendsView)@\spxentry{form\_class}\spxextra{attribut accounts.views.FriendsView}|hyperpage}{3}
+\indexentry{form\_valid() (méthode accounts.views.FriendsView)@\spxentry{form\_valid()}\spxextra{méthode accounts.views.FriendsView}|hyperpage}{3}
+\indexentry{get\_context\_data() (méthode accounts.views.FriendsView)@\spxentry{get\_context\_data()}\spxextra{méthode accounts.views.FriendsView}|hyperpage}{3}
+\indexentry{get\_form\_kwargs() (méthode accounts.views.FriendsView)@\spxentry{get\_form\_kwargs()}\spxextra{méthode accounts.views.FriendsView}|hyperpage}{3}
+\indexentry{get\_queryset() (méthode accounts.views.FriendsView)@\spxentry{get\_queryset()}\spxextra{méthode accounts.views.FriendsView}|hyperpage}{3}
+\indexentry{model (attribut accounts.views.FriendsView)@\spxentry{model}\spxextra{attribut accounts.views.FriendsView}|hyperpage}{3}
+\indexentry{check\_mail() (dans le module accounts.views)@\spxentry{check\_mail()}\spxextra{dans le module accounts.views}|hyperpage}{4}
+\indexentry{delete\_friend() (dans le module accounts.views)@\spxentry{delete\_friend()}\spxextra{dans le module accounts.views}|hyperpage}{4}
+\indexentry{get\_user\_info() (dans le module accounts.views)@\spxentry{get\_user\_info()}\spxextra{dans le module accounts.views}|hyperpage}{4}
+\indexentry{login\_user() (dans le module accounts.views)@\spxentry{login\_user()}\spxextra{dans le module accounts.views}|hyperpage}{4}
+\indexentry{reset\_password() (dans le module accounts.views)@\spxentry{reset\_password()}\spxextra{dans le module accounts.views}|hyperpage}{4}
+\indexentry{send\_reset() (dans le module accounts.views)@\spxentry{send\_reset()}\spxextra{dans le module accounts.views}|hyperpage}{4}
+\indexentry{sign\_out() (dans le module accounts.views)@\spxentry{sign\_out()}\spxextra{dans le module accounts.views}|hyperpage}{4}
+\indexentry{subscribe() (dans le module accounts.views)@\spxentry{subscribe()}\spxextra{dans le module accounts.views}|hyperpage}{4}
+\indexentry{validate() (dans le module accounts.views)@\spxentry{validate()}\spxextra{dans le module accounts.views}|hyperpage}{4}
+\indexentry{accounts.forms (module)@\spxentry{accounts.forms}\spxextra{module}|hyperpage}{5}
+\indexentry{ChangePasswordForm (classe dans accounts.forms)@\spxentry{ChangePasswordForm}\spxextra{classe dans accounts.forms}|hyperpage}{5}
+\indexentry{clean() (méthode accounts.forms.ChangePasswordForm)@\spxentry{clean()}\spxextra{méthode accounts.forms.ChangePasswordForm}|hyperpage}{5}
+\indexentry{CheckMailForm (classe dans accounts.forms)@\spxentry{CheckMailForm}\spxextra{classe dans accounts.forms}|hyperpage}{5}
+\indexentry{LoginForm (classe dans accounts.forms)@\spxentry{LoginForm}\spxextra{classe dans accounts.forms}|hyperpage}{5}
+\indexentry{SearchFriendForm (classe dans accounts.forms)@\spxentry{SearchFriendForm}\spxextra{classe dans accounts.forms}|hyperpage}{5}
+\indexentry{SubscribeForm (classe dans accounts.forms)@\spxentry{SubscribeForm}\spxextra{classe dans accounts.forms}|hyperpage}{5}
+\indexentry{clean() (méthode accounts.forms.SubscribeForm)@\spxentry{clean()}\spxextra{méthode accounts.forms.SubscribeForm}|hyperpage}{5}
+\indexentry{accounts.commands.commands (module)@\spxentry{accounts.commands.commands}\spxextra{module}|hyperpage}{5}
+\indexentry{mail\_password() (dans le module accounts.commands.commands)@\spxentry{mail\_password()}\spxextra{dans le module accounts.commands.commands}|hyperpage}{5}
+\indexentry{mail\_subscription() (dans le module accounts.commands.commands)@\spxentry{mail\_subscription()}\spxextra{dans le module accounts.commands.commands}|hyperpage}{5}
+\indexentry{validate\_subscription() (dans le module accounts.commands.commands)@\spxentry{validate\_subscription()}\spxextra{dans le module accounts.commands.commands}|hyperpage}{5}
+\indexentry{accounts.management.commands.purge\_awaiting\_data (module)@\spxentry{accounts.management.commands.purge\_awaiting\_data}\spxextra{module}|hyperpage}{6}
+\indexentry{Command (classe dans accounts.management.commands.purge\_awaiting\_data)@\spxentry{Command}\spxextra{classe dans accounts.management.commands.purge\_awaiting\_data}|hyperpage}{6}
+\indexentry{handle() (méthode accounts.management.commands.purge\_awaiting\_data.Command)@\spxentry{handle()}\spxextra{méthode accounts.management.commands.purge\_awaiting\_data.Command}|hyperpage}{6}
+\indexentry{library.models (module)@\spxentry{library.models}\spxextra{module}|hyperpage}{7}
+\indexentry{Game (classe dans library.models)@\spxentry{Game}\spxextra{classe dans library.models}|hyperpage}{7}
+\indexentry{Game.DoesNotExist@\spxentry{Game.DoesNotExist}|hyperpage}{7}
+\indexentry{Game.MultipleObjectsReturned@\spxentry{Game.MultipleObjectsReturned}|hyperpage}{7}
+\indexentry{LendedGame (classe dans library.models)@\spxentry{LendedGame}\spxextra{classe dans library.models}|hyperpage}{7}
+\indexentry{LendedGame.DoesNotExist@\spxentry{LendedGame.DoesNotExist}|hyperpage}{7}
+\indexentry{LendedGame.MultipleObjectsReturned@\spxentry{LendedGame.MultipleObjectsReturned}|hyperpage}{7}
+\indexentry{OwnedGame (classe dans library.models)@\spxentry{OwnedGame}\spxextra{classe dans library.models}|hyperpage}{7}
+\indexentry{OwnedGame.DoesNotExist@\spxentry{OwnedGame.DoesNotExist}|hyperpage}{7}
+\indexentry{OwnedGame.MultipleObjectsReturned@\spxentry{OwnedGame.MultipleObjectsReturned}|hyperpage}{7}
+\indexentry{Platform (classe dans library.models)@\spxentry{Platform}\spxextra{classe dans library.models}|hyperpage}{7}
+\indexentry{Platform.DoesNotExist@\spxentry{Platform.DoesNotExist}|hyperpage}{7}
+\indexentry{Platform.MultipleObjectsReturned@\spxentry{Platform.MultipleObjectsReturned}|hyperpage}{7}
+\indexentry{WantedGame (classe dans library.models)@\spxentry{WantedGame}\spxextra{classe dans library.models}|hyperpage}{7}
+\indexentry{WantedGame.DoesNotExist@\spxentry{WantedGame.DoesNotExist}|hyperpage}{7}
+\indexentry{WantedGame.MultipleObjectsReturned@\spxentry{WantedGame.MultipleObjectsReturned}|hyperpage}{7}
+\indexentry{handle\_return\_date() (dans le module library.models)@\spxentry{handle\_return\_date()}\spxextra{dans le module library.models}|hyperpage}{7}
+\indexentry{library.urls (module)@\spxentry{library.urls}\spxextra{module}|hyperpage}{7}
+\indexentry{library.views (module)@\spxentry{library.views}\spxextra{module}|hyperpage}{7}
+\indexentry{BorrowedView (classe dans library.views)@\spxentry{BorrowedView}\spxextra{classe dans library.views}|hyperpage}{7}
+\indexentry{get\_context\_data() (méthode library.views.BorrowedView)@\spxentry{get\_context\_data()}\spxextra{méthode library.views.BorrowedView}|hyperpage}{7}
+\indexentry{get\_queryset() (méthode library.views.BorrowedView)@\spxentry{get\_queryset()}\spxextra{méthode library.views.BorrowedView}|hyperpage}{8}
+\indexentry{model (attribut library.views.BorrowedView)@\spxentry{model}\spxextra{attribut library.views.BorrowedView}|hyperpage}{8}
+\indexentry{GameListView (classe dans library.views)@\spxentry{GameListView}\spxextra{classe dans library.views}|hyperpage}{8}
+\indexentry{form\_class (attribut library.views.GameListView)@\spxentry{form\_class}\spxextra{attribut library.views.GameListView}|hyperpage}{8}
+\indexentry{form\_valid() (méthode library.views.GameListView)@\spxentry{form\_valid()}\spxextra{méthode library.views.GameListView}|hyperpage}{8}
+\indexentry{get\_context\_data() (méthode library.views.GameListView)@\spxentry{get\_context\_data()}\spxextra{méthode library.views.GameListView}|hyperpage}{8}
+\indexentry{get\_form\_kwargs() (méthode library.views.GameListView)@\spxentry{get\_form\_kwargs()}\spxextra{méthode library.views.GameListView}|hyperpage}{8}
+\indexentry{get\_queryset() (méthode library.views.GameListView)@\spxentry{get\_queryset()}\spxextra{méthode library.views.GameListView}|hyperpage}{8}
+\indexentry{model (attribut library.views.GameListView)@\spxentry{model}\spxextra{attribut library.views.GameListView}|hyperpage}{8}
+\indexentry{WantedView (classe dans library.views)@\spxentry{WantedView}\spxextra{classe dans library.views}|hyperpage}{8}
+\indexentry{get\_context\_data() (méthode library.views.WantedView)@\spxentry{get\_context\_data()}\spxextra{méthode library.views.WantedView}|hyperpage}{8}
+\indexentry{get\_queryset() (méthode library.views.WantedView)@\spxentry{get\_queryset()}\spxextra{méthode library.views.WantedView}|hyperpage}{8}
+\indexentry{model (attribut library.views.WantedView)@\spxentry{model}\spxextra{attribut library.views.WantedView}|hyperpage}{8}
+\indexentry{add\_to\_library() (dans le module library.views)@\spxentry{add\_to\_library()}\spxextra{dans le module library.views}|hyperpage}{8}
+\indexentry{add\_wish() (dans le module library.views)@\spxentry{add\_wish()}\spxextra{dans le module library.views}|hyperpage}{8}
+\indexentry{delete\_from\_library() (dans le module library.views)@\spxentry{delete\_from\_library()}\spxextra{dans le module library.views}|hyperpage}{8}
+\indexentry{delete\_wish() (dans le module library.views)@\spxentry{delete\_wish()}\spxextra{dans le module library.views}|hyperpage}{8}
+\indexentry{unmark\_lended() (dans le module library.views)@\spxentry{unmark\_lended()}\spxextra{dans le module library.views}|hyperpage}{9}
+\indexentry{library.forms (module)@\spxentry{library.forms}\spxextra{module}|hyperpage}{9}
+\indexentry{LendGameForm (classe dans library.forms)@\spxentry{LendGameForm}\spxextra{classe dans library.forms}|hyperpage}{9}
+\indexentry{clean() (méthode library.forms.LendGameForm)@\spxentry{clean()}\spxextra{méthode library.forms.LendGameForm}|hyperpage}{9}
+\indexentry{SearchGameForm (classe dans library.forms)@\spxentry{SearchGameForm}\spxextra{classe dans library.forms}|hyperpage}{9}
+\indexentry{library.commands.commands (module)@\spxentry{library.commands.commands}\spxextra{module}|hyperpage}{9}
+\indexentry{find\_games() (dans le module library.commands.commands)@\spxentry{find\_games()}\spxextra{dans le module library.commands.commands}|hyperpage}{9}
+\indexentry{get\_platform() (dans le module library.commands.commands)@\spxentry{get\_platform()}\spxextra{dans le module library.commands.commands}|hyperpage}{9}
+\indexentry{get\_release\_date() (dans le module library.commands.commands)@\spxentry{get\_release\_date()}\spxextra{dans le module library.commands.commands}|hyperpage}{9}
+\indexentry{library.context\_processors.navbar\_search (module)@\spxentry{library.context\_processors.navbar\_search}\spxextra{module}|hyperpage}{9}
+\indexentry{navbar\_search() (dans le module library.context\_processors.navbar\_search)@\spxentry{navbar\_search()}\spxextra{dans le module library.context\_processors.navbar\_search}|hyperpage}{9}
+\indexentry{library.context\_processors.navbar\_search\_decorator (module)@\spxentry{library.context\_processors.navbar\_search\_decorator}\spxextra{module}|hyperpage}{9}
+\indexentry{navbar\_search\_decorator() (dans le module library.context\_processors.navbar\_search\_decorator)@\spxentry{navbar\_search\_decorator()}\spxextra{dans le module library.context\_processors.navbar\_search\_decorator}|hyperpage}{9}
+\indexentry{library.management.commands.populate\_platforms (module)@\spxentry{library.management.commands.populate\_platforms}\spxextra{module}|hyperpage}{10}
+\indexentry{Command (classe dans library.management.commands.populate\_platforms)@\spxentry{Command}\spxextra{classe dans library.management.commands.populate\_platforms}|hyperpage}{10}
+\indexentry{handle() (méthode library.management.commands.populate\_platforms.Command)@\spxentry{handle()}\spxextra{méthode library.management.commands.populate\_platforms.Command}|hyperpage}{10}
+\indexentry{library.templatetags.get\_lended (module)@\spxentry{library.templatetags.get\_lended}\spxextra{module}|hyperpage}{10}
+\indexentry{get\_lended() (dans le module library.templatetags.get\_lended)@\spxentry{get\_lended()}\spxextra{dans le module library.templatetags.get\_lended}|hyperpage}{10}
+\indexentry{gamelenders.urls (module)@\spxentry{gamelenders.urls}\spxextra{module}|hyperpage}{11}
+\indexentry{gamelenders.views (module)@\spxentry{gamelenders.views}\spxextra{module}|hyperpage}{11}
+\indexentry{gamelenders.asgi (module)@\spxentry{gamelenders.asgi}\spxextra{module}|hyperpage}{11}
+\indexentry{gamelenders.wsgi (module)@\spxentry{gamelenders.wsgi}\spxextra{module}|hyperpage}{11}
+\indexentry{scrapping.construct\_requests (module)@\spxentry{scrapping.construct\_requests}\spxextra{module}|hyperpage}{13}
+\indexentry{add\_data\_format() (dans le module scrapping.construct\_requests)@\spxentry{add\_data\_format()}\spxextra{dans le module scrapping.construct\_requests}|hyperpage}{13}
+\indexentry{add\_query() (dans le module scrapping.construct\_requests)@\spxentry{add\_query()}\spxextra{dans le module scrapping.construct\_requests}|hyperpage}{13}
+\indexentry{add\_resources() (dans le module scrapping.construct\_requests)@\spxentry{add\_resources()}\spxextra{dans le module scrapping.construct\_requests}|hyperpage}{13}
+\indexentry{construct\_platform\_request() (dans le module scrapping.construct\_requests)@\spxentry{construct\_platform\_request()}\spxextra{dans le module scrapping.construct\_requests}|hyperpage}{13}
+\indexentry{construct\_request() (dans le module scrapping.construct\_requests)@\spxentry{construct\_request()}\spxextra{dans le module scrapping.construct\_requests}|hyperpage}{13}
+\indexentry{scrapping.send\_requests (module)@\spxentry{scrapping.send\_requests}\spxextra{module}|hyperpage}{13}
+\indexentry{get\_platforms() (dans le module scrapping.send\_requests)@\spxentry{get\_platforms()}\spxextra{dans le module scrapping.send\_requests}|hyperpage}{13}
+\indexentry{send\_request() (dans le module scrapping.send\_requests)@\spxentry{send\_request()}\spxextra{dans le module scrapping.send\_requests}|hyperpage}{13}

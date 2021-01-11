@@ -1,0 +1,193 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter A
+  \item \spxentry{accounts.commands.commands}\spxextra{module}, \hyperpage{5}
+  \item \spxentry{accounts.forms}\spxextra{module}, \hyperpage{5}
+  \item \spxentry{accounts.management.commands.purge\_awaiting\_data}\spxextra{module},
+		\hyperpage{6}
+  \item \spxentry{accounts.models}\spxextra{module}, \hyperpage{3}
+  \item \spxentry{accounts.urls}\spxextra{module}, \hyperpage{3}
+  \item \spxentry{accounts.views}\spxextra{module}, \hyperpage{3}
+  \item \spxentry{add\_data\_format()}\spxextra{dans le module scrapping.construct\_requests},
+		\hyperpage{13}
+  \item \spxentry{add\_query()}\spxextra{dans le module scrapping.construct\_requests},
+		\hyperpage{13}
+  \item \spxentry{add\_resources()}\spxextra{dans le module scrapping.construct\_requests},
+		\hyperpage{13}
+  \item \spxentry{add\_to\_library()}\spxextra{dans le module library.views}, \hyperpage{8}
+  \item \spxentry{add\_wish()}\spxextra{dans le module library.views}, \hyperpage{8}
+  \item \spxentry{AwaitingData}\spxextra{classe dans accounts.models}, \hyperpage{3}
+  \item \spxentry{AwaitingData.DoesNotExist}, \hyperpage{3}
+  \item \spxentry{AwaitingData.MultipleObjectsReturned}, \hyperpage{3}
+
+  \indexspace
+  \bigletter B
+  \item \spxentry{BorrowedView}\spxextra{classe dans library.views}, \hyperpage{7}
+
+  \indexspace
+  \bigletter C
+  \item \spxentry{ChangePasswordForm}\spxextra{classe dans accounts.forms}, \hyperpage{5}
+  \item \spxentry{check\_mail()}\spxextra{dans le module accounts.views}, \hyperpage{4}
+  \item \spxentry{CheckMailForm}\spxextra{classe dans accounts.forms}, \hyperpage{5}
+  \item \spxentry{clean()}\spxextra{méthode accounts.forms.ChangePasswordForm}, \hyperpage{5}
+  \item \spxentry{clean()}\spxextra{méthode accounts.forms.SubscribeForm}, \hyperpage{5}
+  \item \spxentry{clean()}\spxextra{méthode library.forms.LendGameForm}, \hyperpage{9}
+  \item \spxentry{Command}\spxextra{classe dans accounts.management.commands.purge\_awaiting\_data},
+		\hyperpage{6}
+  \item \spxentry{Command}\spxextra{classe dans library.management.commands.populate\_platforms},
+		\hyperpage{10}
+  \item \spxentry{construct\_platform\_request()}\spxextra{dans le module scrapping.construct\_requests},
+		\hyperpage{13}
+  \item \spxentry{construct\_request()}\spxextra{dans le module scrapping.construct\_requests},
+		\hyperpage{13}
+  \item \spxentry{CustomUser}\spxextra{classe dans accounts.models}, \hyperpage{3}
+  \item \spxentry{CustomUser.DoesNotExist}, \hyperpage{3}
+  \item \spxentry{CustomUser.MultipleObjectsReturned}, \hyperpage{3}
+
+  \indexspace
+  \bigletter D
+  \item \spxentry{delete\_friend()}\spxextra{dans le module accounts.views}, \hyperpage{4}
+  \item \spxentry{delete\_from\_library()}\spxextra{dans le module library.views}, \hyperpage{8}
+  \item \spxentry{delete\_wish()}\spxextra{dans le module library.views}, \hyperpage{8}
+
+  \indexspace
+  \bigletter F
+  \item \spxentry{find\_games()}\spxextra{dans le module library.commands.commands}, \hyperpage{9}
+  \item \spxentry{form\_class}\spxextra{attribut accounts.views.FriendsView}, \hyperpage{3}
+  \item \spxentry{form\_class}\spxextra{attribut library.views.GameListView}, \hyperpage{8}
+  \item \spxentry{form\_valid()}\spxextra{méthode accounts.views.FriendsView}, \hyperpage{3}
+  \item \spxentry{form\_valid()}\spxextra{méthode library.views.GameListView}, \hyperpage{8}
+  \item \spxentry{Friends}\spxextra{classe dans accounts.models}, \hyperpage{3}
+  \item \spxentry{Friends.DoesNotExist}, \hyperpage{3}
+  \item \spxentry{Friends.MultipleObjectsReturned}, \hyperpage{3}
+  \item \spxentry{FriendsView}\spxextra{classe dans accounts.views}, \hyperpage{3}
+
+  \indexspace
+  \bigletter G
+  \item \spxentry{Game}\spxextra{classe dans library.models}, \hyperpage{7}
+  \item \spxentry{Game.DoesNotExist}, \hyperpage{7}
+  \item \spxentry{Game.MultipleObjectsReturned}, \hyperpage{7}
+  \item \spxentry{gamelenders.asgi}\spxextra{module}, \hyperpage{11}
+  \item \spxentry{gamelenders.urls}\spxextra{module}, \hyperpage{11}
+  \item \spxentry{gamelenders.views}\spxextra{module}, \hyperpage{11}
+  \item \spxentry{gamelenders.wsgi}\spxextra{module}, \hyperpage{11}
+  \item \spxentry{GameListView}\spxextra{classe dans library.views}, \hyperpage{8}
+  \item \spxentry{get\_context\_data()}\spxextra{méthode accounts.views.FriendsView},
+		\hyperpage{3}
+  \item \spxentry{get\_context\_data()}\spxextra{méthode library.views.BorrowedView},
+		\hyperpage{7}
+  \item \spxentry{get\_context\_data()}\spxextra{méthode library.views.GameListView},
+		\hyperpage{8}
+  \item \spxentry{get\_context\_data()}\spxextra{méthode library.views.WantedView}, \hyperpage{8}
+  \item \spxentry{get\_form\_kwargs()}\spxextra{méthode accounts.views.FriendsView}, \hyperpage{3}
+  \item \spxentry{get\_form\_kwargs()}\spxextra{méthode library.views.GameListView}, \hyperpage{8}
+  \item \spxentry{get\_lended()}\spxextra{dans le module library.templatetags.get\_lended},
+		\hyperpage{10}
+  \item \spxentry{get\_platform()}\spxextra{dans le module library.commands.commands},
+		\hyperpage{9}
+  \item \spxentry{get\_platforms()}\spxextra{dans le module scrapping.send\_requests},
+		\hyperpage{13}
+  \item \spxentry{get\_queryset()}\spxextra{méthode accounts.views.FriendsView}, \hyperpage{3}
+  \item \spxentry{get\_queryset()}\spxextra{méthode library.views.BorrowedView}, \hyperpage{8}
+  \item \spxentry{get\_queryset()}\spxextra{méthode library.views.GameListView}, \hyperpage{8}
+  \item \spxentry{get\_queryset()}\spxextra{méthode library.views.WantedView}, \hyperpage{8}
+  \item \spxentry{get\_release\_date()}\spxextra{dans le module library.commands.commands},
+		\hyperpage{9}
+  \item \spxentry{get\_user\_info()}\spxextra{dans le module accounts.views}, \hyperpage{4}
+
+  \indexspace
+  \bigletter H
+  \item \spxentry{handle()}\spxextra{méthode accounts.management.commands.purge\_awaiting\_data.Command},
+		\hyperpage{6}
+  \item \spxentry{handle()}\spxextra{méthode library.management.commands.populate\_platforms.Command},
+		\hyperpage{10}
+  \item \spxentry{handle\_return\_date()}\spxextra{dans le module library.models}, \hyperpage{7}
+
+  \indexspace
+  \bigletter L
+  \item \spxentry{LendedGame}\spxextra{classe dans library.models}, \hyperpage{7}
+  \item \spxentry{LendedGame.DoesNotExist}, \hyperpage{7}
+  \item \spxentry{LendedGame.MultipleObjectsReturned}, \hyperpage{7}
+  \item \spxentry{LendGameForm}\spxextra{classe dans library.forms}, \hyperpage{9}
+  \item \spxentry{library.commands.commands}\spxextra{module}, \hyperpage{9}
+  \item \spxentry{library.context\_processors.navbar\_search}\spxextra{module}, \hyperpage{9}
+  \item \spxentry{library.context\_processors.navbar\_search\_decorator}\spxextra{module},
+		\hyperpage{9}
+  \item \spxentry{library.forms}\spxextra{module}, \hyperpage{9}
+  \item \spxentry{library.management.commands.populate\_platforms}\spxextra{module}, \hyperpage{10}
+  \item \spxentry{library.models}\spxextra{module}, \hyperpage{7}
+  \item \spxentry{library.templatetags.get\_lended}\spxextra{module}, \hyperpage{10}
+  \item \spxentry{library.urls}\spxextra{module}, \hyperpage{7}
+  \item \spxentry{library.views}\spxextra{module}, \hyperpage{7}
+  \item \spxentry{login\_user()}\spxextra{dans le module accounts.views}, \hyperpage{4}
+  \item \spxentry{LoginForm}\spxextra{classe dans accounts.forms}, \hyperpage{5}
+
+  \indexspace
+  \bigletter M
+  \item \spxentry{mail\_password()}\spxextra{dans le module accounts.commands.commands},
+		\hyperpage{5}
+  \item \spxentry{mail\_subscription()}\spxextra{dans le module accounts.commands.commands},
+		\hyperpage{5}
+  \item \spxentry{model}\spxextra{attribut accounts.views.FriendsView}, \hyperpage{3}
+  \item \spxentry{model}\spxextra{attribut library.views.BorrowedView}, \hyperpage{8}
+  \item \spxentry{model}\spxextra{attribut library.views.GameListView}, \hyperpage{8}
+  \item \spxentry{model}\spxextra{attribut library.views.WantedView}, \hyperpage{8}
+
+  \indexspace
+  \bigletter N
+  \item \spxentry{navbar\_search()}\spxextra{dans le module library.context\_processors.navbar\_search},
+		\hyperpage{9}
+  \item \spxentry{navbar\_search\_decorator()}\spxextra{dans le module library.context\_processors.navbar\_search\_decorator},
+		\hyperpage{9}
+
+  \indexspace
+  \bigletter O
+  \item \spxentry{OwnedGame}\spxextra{classe dans library.models}, \hyperpage{7}
+  \item \spxentry{OwnedGame.DoesNotExist}, \hyperpage{7}
+  \item \spxentry{OwnedGame.MultipleObjectsReturned}, \hyperpage{7}
+
+  \indexspace
+  \bigletter P
+  \item \spxentry{Platform}\spxextra{classe dans library.models}, \hyperpage{7}
+  \item \spxentry{Platform.DoesNotExist}, \hyperpage{7}
+  \item \spxentry{Platform.MultipleObjectsReturned}, \hyperpage{7}
+
+  \indexspace
+  \bigletter R
+  \item \spxentry{reset\_password()}\spxextra{dans le module accounts.views}, \hyperpage{4}
+
+  \indexspace
+  \bigletter S
+  \item \spxentry{scrapping.construct\_requests}\spxextra{module}, \hyperpage{13}
+  \item \spxentry{scrapping.send\_requests}\spxextra{module}, \hyperpage{13}
+  \item \spxentry{SearchFriendForm}\spxextra{classe dans accounts.forms}, \hyperpage{5}
+  \item \spxentry{SearchGameForm}\spxextra{classe dans library.forms}, \hyperpage{9}
+  \item \spxentry{send\_request()}\spxextra{dans le module scrapping.send\_requests},
+		\hyperpage{13}
+  \item \spxentry{send\_reset()}\spxextra{dans le module accounts.views}, \hyperpage{4}
+  \item \spxentry{sign\_out()}\spxextra{dans le module accounts.views}, \hyperpage{4}
+  \item \spxentry{subscribe()}\spxextra{dans le module accounts.views}, \hyperpage{4}
+  \item \spxentry{SubscribeForm}\spxextra{classe dans accounts.forms}, \hyperpage{5}
+
+  \indexspace
+  \bigletter U
+  \item \spxentry{unmark\_lended()}\spxextra{dans le module library.views}, \hyperpage{9}
+
+  \indexspace
+  \bigletter V
+  \item \spxentry{validate()}\spxextra{dans le module accounts.views}, \hyperpage{4}
+  \item \spxentry{validate\_subscription()}\spxextra{dans le module accounts.commands.commands},
+		\hyperpage{5}
+
+  \indexspace
+  \bigletter W
+  \item \spxentry{WantedGame}\spxextra{classe dans library.models}, \hyperpage{7}
+  \item \spxentry{WantedGame.DoesNotExist}, \hyperpage{7}
+  \item \spxentry{WantedGame.MultipleObjectsReturned}, \hyperpage{7}
+  \item \spxentry{WantedView}\spxextra{classe dans library.views}, \hyperpage{8}
+
+\end{sphinxtheindex}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}{{ game.name }}{% endblock title %}
+
+{% block masthead %}
+    <div class="align-self-end text-center">
+        <img class="game-img" src={{ game.image }} alt="{{ game.name }}">
+        <h1 class="text-uppercase text-white font-weight-bold">{{ game.name }}</h1>
+    </div>
+    <main class="h-100 w-100">
+        <div class="container-fluid w-100">
+            <div class="row h-50">
+                <div class="col-md-6 text-center">
+                </div>
+                <div class="col-md-6">
+                    <ul class="rnut">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row h-25 w-100">
+            <div class="text-white">
+                <div class="row h5 font-weight-bold">Description</div>
+                <div class="row">{{ game.deck }}</div>
+                <div class="row h5 font-weight-bold">Plateforme</div>
+                <div class="row">{{ game.platform }}</div>
+                <div class="row h5 font-weight-bold">Date de sortie</div>
+                <div class="row">{{ game.release_date }}</div>
+            </div>
+        </div>
+                   <div class="row text-center justify-content-center">
+                    <form action={{ game.giantbomb_url }}>
+                    {% csrf_token %}
+                    <button>Voir la fiche GiantBomb</button>
+                    </form>
+                </div>
+    </main>
+{% endblock masthead %}
