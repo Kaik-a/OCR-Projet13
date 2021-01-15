@@ -35,7 +35,7 @@ def login_user(request, form: LoginForm) -> HttpResponse:
     :return: HttpResponse
     """
     # Get credentials
-    username = form.data.get("login")
+    username = form.data.get("login").lower()
     password = form.data.get("password")
 
     if username and password:
