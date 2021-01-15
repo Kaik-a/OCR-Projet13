@@ -62,7 +62,7 @@
         <!-- Masthead-->
         <header class="masthead">
         {% include "message.html" %}
-        {% if not request.user_agent.is_pc %}
+        {% if not request.user_agent.is_pc and not request.user.is_anonymous %}
         <div class="text-center">
             <a class="nav-link js-scroll-trigger">
                 <form id="navbar-search-form" class="navbar-search-form" action="" method="post">
