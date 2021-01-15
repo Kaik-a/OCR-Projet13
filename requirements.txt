@@ -1,7 +1,9 @@
 django
+django-user-agents
 gunicorn
 pre-commit
 psycopg2-binary
 requests
 selenium
 sentry-sdk
+user-agent

@@ -5331,6 +5331,7 @@ a.close.disabled {
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
   opacity: 0;
   border-radius: 0.25rem;
+  position: absolute;
 }
 .toast:not(:last-child) {
   margin-bottom: 0.75rem;

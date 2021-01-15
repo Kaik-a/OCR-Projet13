@@ -9,19 +9,46 @@
     <h1 class="text-uppercase text-white font-weight-bold">{% block pagetitle %}Résultats{% endblock pagetitle %}</h1>
     <hr class="divider my-4" />
 </div>
-<div class="w-100">
-    <div class="container w-100">
-        {% block replace %}{% endblock replace %}
+    <div class="text-center">
+    <h2 class="text-uppercase text-white font-weight-bold">{{ games|length }} {% if games|length == 1 %}jeu trouvé{% else %}jeux trouvés{% endif %}</h2>
+    </div>
+{% endblock masthead %}
+
+{% block main %}
+{% block replace %}{% endblock replace %}
+<div class="row w-100">
+    {% for game in games %}
+        {% if forloop.counter|divisibleby:3 %}
+        <div class="col-md-4 text-center align-items-center justify-content-center d-flex">
+            <figure class="games">
+                <a class="games" href={% url "library:game" game.id %}>
+                    <img src="{{ game.image }}" class="game-img img-fluid" alt="{{ game.name }}">
+                    <figcaption>{{ game.name }}</figcaption>
+                </a>
+                {% block save %}
+                    <form class="delete-form" action="{% url "library:add-to-library" game.id%}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-info" type="submit"><i class="fas fa-plus"></i> bibliothèque</button>
+                    </form>
+                    <form class="delete-form" action="{% url "library:add-wish" game.id%}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-success" type="submit"><i class="fas fa-plus"></i> liste d'envies</button>
+                    </form>
+                {% endblock save %}
+            </figure>
+        </div>
+            </div>
+        {% if not forloop.last %}
         <div class="row w-100">
-            {% for game in games %}
-                {% if forloop.counter|divisibleby:3 %}
+        {% endif %}
+        {% else %}
                 <div class="col-md-4 text-center align-items-center justify-content-center d-flex">
                     <figure class="games">
                         <a class="games" href={% url "library:game" game.id %}>
                             <img src="{{ game.image }}" class="game-img img-fluid" alt="{{ game.name }}">
                             <figcaption>{{ game.name }}</figcaption>
                         </a>
-                        {% block save %}
+                        {% block save2 %}
                             <form class="delete-form" action="{% url "library:add-to-library" game.id%}" method="post">
                                 {% csrf_token %}
                                 <button class="btn btn-info" type="submit"><i class="fas fa-plus"></i> bibliothèque</button>
@@ -30,35 +57,10 @@
                                 {% csrf_token %}
                                 <button class="btn btn-success" type="submit"><i class="fas fa-plus"></i> liste d'envies</button>
                             </form>
-                        {% endblock save %}
+                        {% endblock save2 %}
                     </figure>
                 </div>
-                    </div>
-                {% if not forloop.last %}
-                <div class="row w-100">
-                {% endif %}
-                {% else %}
-                        <div class="col-md-4 text-center align-items-center justify-content-center d-flex">
-                            <figure class="games">
-                                <a class="games" href={% url "library:game" game.id %}>
-                                    <img src="{{ game.image }}" class="game-img img-fluid" alt="{{ game.name }}">
-                                    <figcaption>{{ game.name }}</figcaption>
-                                </a>
-                                {% block save2 %}
-                                    <form class="delete-form" action="{% url "library:add-to-library" game.id%}" method="post">
-                                        {% csrf_token %}
-                                        <button class="btn btn-info" type="submit"><i class="fas fa-plus"></i> bibliothèque</button>
-                                    </form>
-                                    <form class="delete-form" action="{% url "library:add-wish" game.id%}" method="post">
-                                        {% csrf_token %}
-                                        <button class="btn btn-success" type="submit"><i class="fas fa-plus"></i> liste d'envies</button>
-                                    </form>
-                                {% endblock save2 %}
-                            </figure>
-                        </div>
-                {% endif %}
-            {% endfor %}
-            </div>
+        {% endif %}
+    {% endfor %}
     </div>
-</div>
-{% endblock masthead %}
+{% endblock main %}

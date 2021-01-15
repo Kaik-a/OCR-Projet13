@@ -9,7 +9,7 @@
     <h1 class="text-uppercase text-white font-weight-bold">{% block pagetitle %}Vos jeux{% endblock pagetitle %}</h1>
     <hr class="divider my-4" />
 </div>
-<table class="table table-dark">
+<table class="table table-dark" {% if not request.user_agent.is_pc %}style="overflow: auto; display: block"{% endif %}>
     <thead>
         <tr>
             <th scope="col">Nom</th>

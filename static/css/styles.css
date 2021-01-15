@@ -5322,6 +5322,7 @@ a.close.disabled {
 }
 
 .toast {
+  position: absolute;
   flex-basis: 350px;
   max-width: 350px;
   font-size: 0.875rem;

@@ -1,5 +1,5 @@
 # OCR-Projet13
-Créez une plateforme pour amateurs de Nutella
+GameLenders
 
 ## Prerequisites
 * Download this repository
@@ -22,12 +22,13 @@ Créez une plateforme pour amateurs de Nutella
 ## Tests
 Tests are divided in 3 categories and are in "tests" directory
 * unit : unit tests
-* functional : functional tests
-* integration : integration tests and selenium tests
+* functional : functional tests and selenium tests
+* integration : integration tests
 
 Tests are run using "python manage.py test tests"
 
 Coverage report can be found in htmlcov/index
+
 ## Author
 **Mehdi Bichari** - [GitHub Repo](https://github.com/Kaik-a/)
 
