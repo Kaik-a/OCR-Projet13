@@ -53,7 +53,7 @@
                             </li>
                             <li id="friends-button" class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url "accounts:friends" %}" title="Amis"><i class="fas fa-users"></i>{% if not request.user_agent.is_pc %} Amis{% endif %}</a></li>
                         {% endif %}
-                        <li id="navbar_account" class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url 'accounts:login' %}"{% else %}{% url 'accounts:user_account'%}" title="Votre compte"{% endif %}>{% if not request.user_agent.is_pc %}{% if request.user.is_anonymous %} Login{% else %} <i class="fas fa-user-circle"></i>{% if not request.user_agent.is_pc %} Mon compte{% endif %}{% endif %}{% endif %}</a></li>
+                        <li id="navbar_account" class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url 'accounts:login' %}"{% else %}{% url 'accounts:user_account'%}" title="Votre compte"{% endif %}>{% if request.user.is_anonymous %} Login{% else %} <i class="fas fa-user-circle"></i>{% if not request.user_agent.is_pc %} Votre Compte{% endif %}{% endif %}</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% if request.user.is_anonymous %}{% url "accounts:subscription" %}" id="subscription">Inscription{% else %}{% url "accounts:logout" %}" title="Déconnexion" id="logout"><i class="fas fa-sign-out-alt"></i>{% if not request.user_agent.is_pc %} Déconnexion{% endif %}{% endif %}</a></li>
                     </ul>
                 </div>
