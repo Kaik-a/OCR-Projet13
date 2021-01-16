@@ -7,6 +7,7 @@ from . import *
 
 ALLOWED_HOSTS = [
     "178.62.53.45",
+    "46.101.47.87",
     "10.106.0.3",
     "127.0.0.1",
     "gamelenders.site",
